@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+  jekyll:
+      build: ./etc/docker/jekyll
+      container_name: blog_jekyll
+      command: jekyll serve --watch --incremental
+      ports:
+          - 4000:4000
+      volumes:
+          - ./jekyll:/srv/jekyll:rw
