@@ -1,17 +1,17 @@
 source: .
 destination: ../dist
 
-title:             Clean Blog
-email:             your-email@example.com
-description:       A Blog Theme by Start Bootstrap
-author:            Start Bootstrap
+title:             Quentin Machard
+email:             quentin.machard@gmail.com
+description:       My developer's blog
+author:            Quentin Machard
 baseurl:           "/"
-url:               "http://blackrockdigital.github.io"
+url:               "http://blog.quentinmachard.fr"
 
 # Social Profiles
-twitter_username:  SBootstrap
-github_username:   BlackrockDigital
-facebook_username: StartBootstrap
+twitter_username:  quentinmachard
+github_username:   qmachard
+website_url:       http://www.quentinmachard.fr
 
 # Build settings
 markdown:          kramdown
