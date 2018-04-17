@@ -1,0 +1,22 @@
+source: .
+destination: ../dist
+
+title:             Quentin Machard
+email:             quentin.machard@gmail.com
+description:       My developer's blog
+author:            Quentin Machard
+baseurl:           "/"
+url:               "http://blog.quentinmachard.fr"
+
+# Social Profiles
+twitter_username:  quentinmachard
+github_username:   qmachard
+website_url:       http://www.quentinmachard.fr
+
+# Build settings
+markdown:          kramdown
+paginate:          5
+paginate_path:     "/posts/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate

@@ -8,4 +8,5 @@ services:
       ports:
           - 4000:4000
       volumes:
-          - ./jekyll:/srv/jekyll:rw
+          - ./dist:/srv/dist:rw
+          - ./src:/srv/jekyll:rw

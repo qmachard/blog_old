@@ -65,4 +65,7 @@ gen
 
 # Jekyll
 
-jekyll/_site
+dist
+/src/.jekyll-metadata
+/src/Gemfile.lock
+/src/.sass-cache
