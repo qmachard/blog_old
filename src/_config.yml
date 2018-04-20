@@ -3,7 +3,7 @@ destination: ../dist
 
 title:             Quentin Machard
 email:             quentin.machard@gmail.com
-description:       My developer's blog
+description:       LE BLOG
 author:            Quentin Machard
 baseurl:           "/"
 url:               "http://blog.quentinmachard.fr"
