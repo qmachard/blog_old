@@ -9,9 +9,9 @@ install:
   - gem install jekyll-feed
   - gem install jekyll-paginate
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 
 env:
   global:
