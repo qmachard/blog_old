@@ -3,8 +3,8 @@
 if  [[ $TRAVIS_PULL_REQUEST = "false" ]]
 then
     ncftp -u "$USERNAME" -p "$PASSWORD" "$HOST"<<EOF
-    rm -rf public_html/blog
-    mkdir public_html/blog
+    cd public_html/blog
+    rm -rf .*
     quit
 EOF
 
