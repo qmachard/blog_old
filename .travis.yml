@@ -24,10 +24,10 @@ notifications:
     on_success: always
     on_failure: always
 
-#script:
-#  - chmod +x ./etc/scripts/build.sh
-#  - ./etc/scripts/build.sh
-#
+script:
+  - chmod +x ./etc/scripts/build.sh
+  - ./etc/scripts/build.sh
+
 #after_success:
 #  - chmod +x ./etc/scripts/deploy.sh
 #  - ./etc/scripts/deploy.sh
