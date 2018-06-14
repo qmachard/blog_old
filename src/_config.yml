@@ -2,6 +2,7 @@ source: .
 destination: ../dist
 
 title:             Quentin Machard | Blog
+title_display:     Quentin Machard
 email:             quentin.machard@gmail.com
 description:       LE BLOG
 author:            Quentin Machard
@@ -20,3 +21,5 @@ paginate_path:     "/posts/page:num/"
 plugins:
   - jekyll-feed
   - jekyll-paginate
+
+analytics:         UA-120870313-1
