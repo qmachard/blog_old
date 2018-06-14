@@ -3,6 +3,7 @@ layout: post
 title:  "Hello World!"
 subtitle: "Petite présentation de mon blog, mes recherches et mon nouveau challenge !"
 background: '/img/posts/2018-04-12-hello-world.jpg'
+comments: true
 ---
 
 # Hello World!
