@@ -3,12 +3,9 @@ rvm:
   - 2.3.1
 
 install:
-  - cd ./src
-  - bundle install
-#  - gem install jekyll
-#  - gem install jekyll-sitemap
-#  - gem install jekyll-feed
-#  - gem install jekyll-paginate
+#  - cd ./src
+  - bundle install --gemfile=./src/Gemfile
+#  - cd ../
 
 #branches:
 #  only:
@@ -26,6 +23,7 @@ notifications:
     on_failure: always
 
 script:
+  -
   - chmod +x ./etc/scripts/build.sh
   - ./etc/scripts/build.sh
 
