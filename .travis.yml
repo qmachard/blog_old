@@ -1,0 +1,37 @@
+language: ruby
+rvm:
+  - 2.3.1
+
+install:
+  - bundle install --gemfile=./src/Gemfile
+
+branches:
+  only:
+    - master
+
+env:
+  global:
+    - JEKYLL_ENV=production
+
+notifications:
+  email:
+    recipients:
+      - quentin.machard@gmail.com
+    on_success: always
+    on_failure: always
+
+script:
+  -
+  - chmod +x ./etc/scripts/build.sh
+  - ./etc/scripts/build.sh
+
+after_success:
+  - chmod +x ./etc/scripts/deploy.sh
+  - ./etc/scripts/deploy.sh
+
+sudo: false
+addons:
+  apt:
+    packages:
+      - ncftp
+
