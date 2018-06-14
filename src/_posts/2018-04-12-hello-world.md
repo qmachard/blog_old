@@ -5,11 +5,16 @@ subtitle: "Petite présentation de mon blog, mes envies et mon nouveau challenge
 background: '/img/posts/2018-04-12-hello-world.jpg'
 ---
 
-# Case départ
+# Hello World!
+
+> "Hello World!", les premiers mots que j'ai écris quand j'ai commencer à coder en HTML.
 
 Bonjour à toutes et à tous, bienvenue sur mon blog. 
 
-Celui-ci a pour but de présenter mes recherches et mes ressources en terme de développement afin de vous les faire partager.
+## Case départ
+
+
+Ce blog a pour but de présenter mes recherches et mes ressources en terme de développement afin de vous les faire partager.
 
 > Éternel touche-à-tout, j'aime apprendre, proposer et réussir de nouveaux challenges. C'est donc un nouveau défi pour moi que de tenir un blog technique.
 
@@ -19,7 +24,7 @@ L'écriture est un nouveau défi pour moi et j'espère que mes articles vous ser
 Les articles que vous pourrez lire seront dans un premier temps écrit en français. 
 J'espère par la suite les traduire et les proposer également en anglais, pour me conformer au langage commun de l'informatique.
 
-# License
+## License
 
 Le contenu de ce blog, est sous licence [Creative Commons (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
