@@ -3,11 +3,12 @@ rvm:
   - 2.3.1
 
 install:
+  - cd ./src
   - bundle install
-  - gem install jekyll
-  - gem install jekyll-sitemap
-  - gem install jekyll-feed
-  - gem install jekyll-paginate
+#  - gem install jekyll
+#  - gem install jekyll-sitemap
+#  - gem install jekyll-feed
+#  - gem install jekyll-paginate
 
 #branches:
 #  only:
