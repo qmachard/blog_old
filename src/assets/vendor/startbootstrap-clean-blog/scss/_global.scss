@@ -5,20 +5,6 @@ body {
   @include serif-font;
 }
 
-p {
-  line-height: 1.5;
-  margin: 30px 0;
-
-  a {
-    text-decoration: underline;
-    color: $primary;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
 h1,
 h2,
 h3,
@@ -80,15 +66,4 @@ img::selection {
 img::-moz-selection {
   color: $white;
   background: transparent;
-}
-
-
-article {
-  h2 {
-    color: $primary;
-  }
-
-  h3 {
-    color: $gray-600;
-  }
 }

@@ -40,3 +40,46 @@
     }
   }
 }
+
+.post {
+  counter-reset: h2counter h3counter;
+
+  p,  ul, ol {
+    line-height: 1.5;
+    margin: 30px 0;
+
+    a {
+      text-decoration: underline;
+      color: $primary;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  h1 {
+    counter-reset: h2counter h3counter;
+  }
+
+  h2 {
+    color: $primary;
+    counter-reset: h3counter;
+    counter-increment: h2counter;
+
+    &:before {
+      content: counter(h2counter) ".\0000a0\0000a0";
+      opacity: 0.7;
+    }
+  }
+
+  h3 {
+    color: $gray-600;
+    counter-increment: h3counter;
+
+    &:before {
+      opacity: 0.7;
+      content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+    }
+  }
+}
