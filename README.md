@@ -8,7 +8,15 @@ Visit my blog on [blog.quentinmachard.fr](http://blog.quentinmachard.fr)
 
 # Installation
 
-*Todo*
+## Docker
+
+You only need to run
+
+```
+$ docker-compose up
+```
+
+And go to [http://localhost:4000](http://localhost:4000)
 
 # CC BY 4.0 License
 

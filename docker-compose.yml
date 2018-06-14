@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   jekyll:
-      build: ./etc/docker/jekyll
+      image: jekyll/jekyll
       container_name: blog_jekyll
       command: jekyll serve --watch --incremental
       ports:
