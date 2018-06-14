@@ -3,13 +3,11 @@ rvm:
   - 2.3.1
 
 install:
-#  - cd ./src
   - bundle install --gemfile=./src/Gemfile
-#  - cd ../
 
-#branches:
-#  only:
-#    - master
+branches:
+  only:
+    - master
 
 env:
   global:
