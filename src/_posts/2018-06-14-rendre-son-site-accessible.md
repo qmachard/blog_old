@@ -73,3 +73,235 @@ En France, le ministère de l'intérieur en a fait une adaptation appelée [*Ré
 Ces deux normes contiennent 3 niveaux de critères : A, AA et AAA.
 
 ## Bonnes pratiques
+
+Maintenant que l'on connait les problèmes d'accessibilité et les solutions existantes, que doit-on faire en tant que développeur / intégrateur web ? N'ayez craintes, c'est facile !!
+
+![Go on... (The IT Crowd - Moss)](https://media3.giphy.com/media/3oKIPnbKgN3bXeVpvy/giphy.gif)
+
+### La sémantique
+
+Comme vous le savez maintenant, les liseuse d'écran, tout comme les robots, s'appuient essentiellement sur le code de votre page web. Il est donc nécessaire d'utiliser le bon balisage HTML.
+
+En plus de l'accessibilité cela ajoute quelques bénéfices :
+
+- **Facilite les développement** : Fonctionnalité natives sans Javascript
+- **Meilleur pour le mobile** : Plus organisé et donc plus facile à rendre responsive
+- **Bon pour le SEO** : Les moteurs de recherches donnent de l'importance aux mot clés présents dans les balises de titres et aux sections des sites.
+
+#### La structure de la page
+
+Le but est d'utiliser tout simplement les bonnes balises HTML en fonction de la nature de l'élément afin de hierarchiser les informations sur la page.
+
+- Entêtes de page, de section ou d'articles : `<header>`
+- Pied de page, de section ou d'articles : `<footer>`
+- Navigations : `<nav>`
+- Sections de page : `<main>`, `<section>`, `<article>`, `<aside>`
+
+[Retrouvez la liste des nouvelles balises HTML5 et comment les utiliser](https://www.alsacreations.com/article/lire/1376-html5-section-article-nav-header-footer-aside.html)
+
+##### Par exemple
+
+```html
+<header>
+  <h1>Header</h1>
+</header>
+
+<nav>
+  <!-- main navigation in here -->
+</nav>
+
+<!-- Here is our page's main content -->
+<main>
+  <article>
+    <h2>Article heading</h2>
+  </article>
+
+  <aside>
+    <h2>Related</h2>
+  </aside>
+</main>
+
+<!-- And here is our main footer that is used across all the pages of our website -->
+<footer>
+  <!-- footer content in here -->
+</footer>
+```
+Et si vous aviez l'habitude ~~des années 2000~~ d'utiliser des tableaux pour vos mises en page, sachez que **l'usage des tableaux pour structurer une page est strictement interdit !**
+
+![Animation d'un homme s'écriant "NON!"](https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif)
+
+#### La structure du texte
+
+De la même manière que pour la page, il est important d'**utiliser les bonnes balises de texte**. Celles-ci permettent de différencier, **autrement que par le style d'affichage**, un titre, un paragraphe, une liste, etc.
+
+- Titres : `<h1>`, `<h2>`...
+- Paragraphes :  `<p>`
+- Listes : `<ul>` et `<ol>` + `<li>`
+- Mise en avant de texte : `<em>` ou `<strong>` au lieu de `<b>` et `<i>`
+
+##### Exemple
+
+À faire :
+
+```html
+<h1>My heading</h1>
+
+<p>This is the first section of my document.</p>
+
+<p>I'll add another paragraph here too.</p>
+
+<ol>
+  <li>Here is</li>
+  <li>a list for</li>
+  <li>you to read</li>
+</ol>
+
+<h2>My subheading</h2>
+
+<p>This is the first subsection of my document. I'd love people to be able to find this content!</p>
+```
+
+À ne pas faire :
+
+```html
+<font size="7">My heading</font>
+<br><br>
+This is the first section of my document.
+<br><br>
+I'll add another paragraph here too.
+<br><br>
+1. Here is
+<br><br>
+2. a list for
+<br><br>
+3. you to read
+<br><br>
+<font size="5">My subheading</font>
+<br><br>
+This is the first subsection of my document. I'd love people to be able to find this content!
+<br><br>
+```
+
+Visuellement les deux codes donnent le même résultat. On se rend bien compte que le premier est bien plus lisible que le second.
+
+#### Actions et formulaires
+
+Il faut essayer d'**utiliser au maximum les balises prévues** pour l'action souhaitée (`<button>`, `<a>`, etc.). **Le label de ces balises doit être explicite** pour éviter de se retrouver avec des "clichez ici" sur toute la page.
+
+Remplacez :
+
+```html
+<p>Les baleines sont de très jolies créatures. Pour en savoir plus, <a href="whales.html">cliquez ici</a>.</p>
+```
+
+Par :
+
+```html
+<p>Les baleines sont de très jolies créatures. <a href="whales.html">En savoir plus sur les baleines</a>.</p>
+```
+
+#### Tableaux
+
+Qui a dit que les tableaux n'étaient pas accessibles ? Biens utilisés et implémentés, ils le sont. Il y a juste quelques règles à respecter :
+
+- Ajouter une description  au tableau : `<caption>`
+- Utiliser les structures de tableau : `<thead>`, `<tfoot>`, `<tbody>`
+- Utilisation de l'attribut `scope`de la balise `<th>` pour spécifier si le header correspond à la ligne (`scope="row"`) ou à la colonne (`scope="row"`)
+
+Plus d'informations sur [les tableaux accessibles sur la MDN web docs](https://developer.mozilla.org/fr/Apprendre/HTML/Tableaux/Advanced)
+
+```html
+<table>
+  <caption>Comment j'ai choisi de dépenser mon argent</caption>
+  <thead>
+    <tr>
+      <th scope="col">Achats</th>
+      <th scope="col">Ou ?</th>
+      <th scope="col">Date</th>
+      <th scope="col">Avis</th>
+      <th scope="col">Coût (€)</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspan="4">SUM</td>
+      <td>48</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr>
+      <th scope="row">Coupe de cheveux</th>
+      <td>Coiffeur</td>
+      <td>12/09</td>
+      <td>Bonne idée</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th scope="row">Lasagnes</th>
+      <td>Restaurant</td>
+      <td>12/09</td>
+      <td>Regrets</td>
+      <td>18</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+#### Images
+
+Les images, qui ne sont pas décoratives, **doivent avoir un texte alternatif** afin d'être interprétée par le public malvoyant. Celui-ci doit être une description claire de l'image.
+
+```html
+<img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+```
+
+Plus d'informations [sur les images accessibles](http://mdn.github.io/learning-area/accessibility/html/accessible-image.html).
+
+### Design et CSS
+
+#### Contrastes
+
+Une **attention particulière doit être portée sur les contrastes**. Certains outils en ligne existent pour faciliter les tests.
+
+Quelques sites proposent même un **bouton permettant d'augmenter les contrastes** en modifiant les couleurs. C'est le cas du [site de la SNCF](https://www.sncf.com/fr) par exemple.
+
+#### Focus clavier
+
+On a vu toute à l'heure que le site devait être **navigable au clavier**. Il est donc important de savoir où est le focus.
+
+Par défaut, les navigateurs proposent une bordure pas forcément très design... On peut donc tout simplement proposer une alternative en CSS grâce au `:focus` qui s'utilise de la même manière que le `:hover`.
+
+#### Éléments masqués
+
+Dans certains cas, on veut **rendre "visible" des éléments seulement pour les liseuses d'écran**, mais pas pour tout le monde.
+
+La solution est donc de les masquer en CSS, mais tout n'est pas si simple, le **`display: none;` n'est pas interprété par les liseuses**.
+
+![GIF de Minion s'écriant "WHAT?!!"](https://media.giphy.com/media/SqmkZ5IdwzTP2/giphy.gif)
+
+Rassurez-vous, il existe pas mal de [possibilités pour contourner cette "limite"](https://webaim.org/techniques/css/invisiblecontent/). Par exemple :
+
+```html
+<i class="icon icon-phone"><span class="hidden-label">Téléphone :</span></i>
+```
+
+```css
+/* Non interprété par une liseuse */
+.hidden-label {
+    display: none;
+    /* ou */
+    visibility: hidden;
+}
+```
+
+```css
+/* Interprété par une liseuse */
+.hidden-label {
+	overflow: hidden;
+	text-indent: -10000px;
+    /* ou */
+	overflow: hidden;
+	width: 0;
+    height: 0;
+}
+```
