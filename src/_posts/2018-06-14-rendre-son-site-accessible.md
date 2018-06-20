@@ -13,11 +13,11 @@ Ayant eu l'occasion de travailler sur le projet d'un site pour une organisation 
 
 ### Définition
 
-> L'accessibilité numérique est la **mise à la disposition des ressources numériques pour tous les individus**, quels que soient leur matériel ou logiciel, leur infrastructure réseau, leur langue maternelle, leur culture, leur localisation géographique, ou leurs aptitudes physiques ou mentales.
+> L'accessibilité numérique est la **mise à la disposition des ressources numériques pour tous les individus**, quels que soit leur matériel ou logiciel, leur infrastructure réseau, leur langue maternelle, leur culture, leur localisation géographique, ou leurs aptitudes physiques ou mentales.
 >
 > — MDN Mozilla
 
-Il faut donc retenir que l'accessibilité ne touche **pas seulement le handicap**, il prend également en compte le support de l'utilisateur (mobile, tablette) mais aussi son infrastructure réseau, etc. En fait, il participe au **bien être d'un utilisateur** sur un site.
+Il faut donc retenir que l'accessibilité ne touche **pas seulement le handicap**, il prend également en compte le support de l'utilisateur (mobile, tablette) mais aussi son infrastructure réseau, etc. En fait, il participe au **bien-être d'un utilisateur** sur un site.
 
 ### Bénéfices
 
@@ -27,15 +27,15 @@ Un site web, par définition, répond à un besoin. Il est donc **primordial que
 
 #### Accessibilité + SEO = ❤️
 
-Beaucoup de principes d'accessibilité son bénéfiques pour le référencement. Il passe notament par la bonne sémantique de ses pages. Autant faire d'une pière, deux coups.
+Beaucoup de principes d'accessibilité sont bénéfiques pour le référencement. Il passe notamment par la bonne sémantique de ses pages. Autant faire d'une pierre deux coups.
 
-#### Ethique et morale
+#### Éthique et morale
 
-L'accessibilité montre qu'un site est ouvert au autres, ce qui favorise son image.
+L'accessibilité montre qu'un site est ouvert à l’autre, ce qui favorise son image.
 
 ### Handicaps et solutions
 
-Il est important de penser à **tous les cas de "handicap"**, pas seulement les cas courants et ne pas se restrindre à ses propres conditions (réseaux, taille d'écran, système d'exploitation, etc.).
+Il est important de penser à **tous les cas de "handicap"**, pas seulement les cas courants et ne pas se restreindre à ses propres conditions (réseaux, taille d'écran, système d'exploitation, etc.).
 
 Il faut réussir à se mettre **dans les conditions d'utilisation** et pour cela utiliser des outils spécialisés permettant d'apporter des solutions
 
@@ -45,7 +45,7 @@ Il faut réussir à se mettre **dans les conditions d'utilisation** et pour cela
 
 Les personnes ayant des troubles de la vue auront plus de mal à lire le contenu d'une page si les couleurs utilisées manquent de contraste. C'est pour cela que **le contraste est un critère important pour l'accessibilité**.
 
-Les personnes aveugles ou malvoyantes utiliseront, quand à elle, un [logiciel de lecteur d'écran](http://www.sautcreatif.com/fr/accessibilite-comment-lire-page-web-quand-mal-voyant-ou-non-voyant/). Celui-ci est **inefficace si le contenu du site n'est pas bien structuré sémantiquement**.
+Les personnes aveugles ou malvoyantes utiliseront, quant à elle, un [logiciel de lecteur d'écran](http://www.sautcreatif.com/fr/accessibilite-comment-lire-page-web-quand-mal-voyant-ou-non-voyant/). Celui-ci est **inefficace si le contenu du site n'est pas bien structuré sémantiquement**.
 
 #### Troubles de l'audition
 
@@ -53,46 +53,46 @@ Les internautes malentendants ne pourront pas écouter des sons ou des vidéos. 
 
 #### Trouble de la mobilité
 
-Certaines personnes ont du mal à appréhender une souris, ou n'en n'ont tout simplement pas. Ils devront donc **naviger sur le site au clavier**.
+Certaines personnes ont du mal à appréhender une souris, ou n'en ont tout simplement pas. Ils devront donc **naviguer sur le site au clavier**.
 
-#### Trouble cognitifs
+#### Trouble cognitif
 
 Pour aider les utilisateurs ayant des [troubles cognitifs](https://sante-medecine.journaldesfemmes.fr/faq/38498-trouble-cognitif-definition), il est important que le **site soit cohérent et simple**.
 
-* Header, footer, toujours placés aux mêmes endroits suivant les pages
-* Formulaires simple et expliqués
-* Limitation du nombre d'informations contenus dans une page
+* Header et footer, toujours placés aux mêmes endroits suivant les pages
+* Formulaires simples et expliqués
+* Limitation du nombre d'informations contenues dans une page
 * Utilisation d'un langage simple et clair
 
 ### Normes existantes
 
-Le W3C a définit un certain nombre de critère dans une norme appelée [*Web Content Accessibility Guidelines* (WCAG)](https://www.w3.org/Translations/WCAG20-fr/).
+Le W3C a défini un certain nombre de critères dans une norme appelée [*Web Content Accessibility Guidelines* (WCAG)](https://www.w3.org/Translations/WCAG20-fr/).
 
-En France, le ministère de l'intérieur en a fait une adaptation appelée [*Référentiel Général d'Accessibilité pour les Administrations* (RGAA)](https://references.modernisation.gouv.fr/rgaa-accessibilite/).
+En France, le ministère de l'Intérieur en a fait une adaptation appelée [*Référentiel Général d'Accessibilité pour les Administrations* (RGAA)](https://references.modernisation.gouv.fr/rgaa-accessibilite/).
 
 Ces deux normes contiennent 3 niveaux de critères : A, AA et AAA.
 
 ## Bonnes pratiques
 
-Maintenant que l'on connait les problèmes d'accessibilité et les solutions existantes, que doit-on faire en tant que développeur / intégrateur web ? N'ayez craintes, c'est facile !!
+Maintenant que l'on connaît les problèmes d'accessibilité et les solutions existantes, que doit-on faire en tant que développeur / intégrateur web ? N'ayez crainte, c'est facile !!
 
 ![Go on... (The IT Crowd - Moss)](https://media3.giphy.com/media/3oKIPnbKgN3bXeVpvy/giphy.gif)
 
 ### La sémantique
 
-Comme vous le savez maintenant, les liseuse d'écran, tout comme les robots, s'appuient essentiellement sur le code de votre page web. Il est donc nécessaire d'utiliser le bon balisage HTML.
+Comme vous le savez maintenant, les liseuses d'écran, tout comme les robots, s'appuient essentiellement sur le code de votre page web. Il est donc nécessaire d'utiliser le bon balisage HTML.
 
-En plus de l'accessibilité cela ajoute quelques bénéfices :
+En plus de l'accessibilité, cela ajoute quelques bénéfices :
 
-- **Facilite les développement** : Fonctionnalité natives sans Javascript
+- **Facilite les développements** : Fonctionnalités natives sans Javascript
 - **Meilleur pour le mobile** : Plus organisé et donc plus facile à rendre responsive
-- **Bon pour le SEO** : Les moteurs de recherches donnent de l'importance aux mot clés présents dans les balises de titres et aux sections des sites.
+- **Bon pour le SEO** : Les moteurs de recherches donnent de l'importance aux mots clés présents dans les balises de titres et aux sections des sites.
 
 #### La structure de la page
 
-Le but est d'utiliser tout simplement les bonnes balises HTML en fonction de la nature de l'élément afin de hierarchiser les informations sur la page.
+Le but est d'utiliser tout simplement les bonnes balises HTML en fonction de la nature de l'élément afin de hiérarchiser les informations sur la page.
 
-- Entêtes de page, de section ou d'articles : `<header>`
+- En-têtes de page, de section ou d'articles : `<header>`
 - Pied de page, de section ou d'articles : `<footer>`
 - Navigations : `<nav>`
 - Sections de page : `<main>`, `<section>`, `<article>`, `<aside>`
@@ -267,7 +267,7 @@ Quelques sites proposent même un **bouton permettant d'augmenter les contrastes
 
 #### Focus clavier
 
-On a vu toute à l'heure que le site devait être **navigable au clavier**. Il est donc important de savoir où est le focus.
+On a vu tout à l'heure que le site devait être **navigable au clavier**. Il est donc important de savoir où est le focus.
 
 Par défaut, les navigateurs proposent une bordure pas forcément très design... On peut donc tout simplement proposer une alternative en CSS grâce au `:focus` qui s'utilise de la même manière que le `:hover`.
 
