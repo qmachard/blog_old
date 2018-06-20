@@ -18,7 +18,7 @@ website_url:       http://www.quentinmachard.fr
 markdown:          kramdown
 paginate:          5
 paginate_path:     "/posts/page:num/"
-#highlighter:       rouge
+highlighter:       rouge
 extlinks:
   attributes:
     rel: nofollow

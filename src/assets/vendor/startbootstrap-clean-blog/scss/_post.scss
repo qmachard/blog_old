@@ -44,7 +44,7 @@
 .post {
   counter-reset: h2counter h3counter;
 
-  p,  ul, ol {
+  p,  ul, ol, .highlighter-rouge {
     line-height: 1.5;
     margin: 30px 0;
 
