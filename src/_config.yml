@@ -18,9 +18,17 @@ website_url:       http://www.quentinmachard.fr
 markdown:          kramdown
 paginate:          5
 paginate_path:     "/posts/page:num/"
+#highlighter:       rouge
+extlinks:
+  attributes:
+    rel: nofollow
+    target: _blank
+    class: external-link
+  rel_exclude:     []
 plugins:
   - jekyll-feed
   - jekyll-paginate
+  - jekyll-extlinks
 
 analytics:         UA-120870313-1
 disqus:            https://quentin-machard-blog.disqus.com/embed.js

@@ -6,52 +6,53 @@ layout: default
 <header class="masthead"{% if page.background %} style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')"{% endif %}>
     <div class="overlay"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>{{ site.title_display }}</h1>
-            {% if site.description %}
-              <span class="subheading">{{ site.description }}</span>
-            {% endif %}
-          </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>{{ site.title_display }}</h1>
+                    {% if site.description %}
+                        <span class="subheading">{{ site.description }}</span>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
-  <main class="container">
+<main class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-lg-8 col-md-10 mx-auto">
 
-        {{ content }}
+            {{ content | extlinks }}
 
-        <!-- Home Post List -->
-        {% for post in site.posts limit : 5 %}
+            <!-- Home Post List -->
+            {% for post in site.posts limit : 5 %}
 
-          <article class="post-preview">
-            <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
-              <h2 class="post-title">{{ post.title }}</h2>
-              {% if post.subtitle %}
-                <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-              {% else %}
-                <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
-              {% endif %}
-            </a>
-            <p class="post-meta">Posté par
-              {% if post.author %}
-                {{ post.author }}
-              {% else %}
-                {{ site.author }}
-              {% endif %}
-              le {{ post.date | date: '%d/%m/%Y' }}</p>
-          </article>
-          <hr>
-        {% endfor %}
+                <article class="post-preview">
+                    <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
+                        <h2 class="post-title">{{ post.title }}</h2>
+                        {% if post.subtitle %}
+                            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+                        {% else %}
+                            <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
+                        {% endif %}
+                    </a>
+                    <p class="post-meta">Posté par
+                        {% if post.author %}
+                            {{ post.author }}
+                        {% else %}
+                            {{ site.author }}
+                        {% endif %}
+                        le {{ post.date | date: '%d/%m/%Y' }}</p>
+                </article>
+                <hr>
+            {% endfor %}
 
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="{{"/posts" | relative_url }}">Voir tous les articles &rarr;</a>
+            <!-- Pager -->
+            <div class="clearfix">
+                <a class="btn btn-primary float-right" href="{{ "/posts" | relative_url }}">Voir tous les articles
+                    &rarr;</a>
+            </div>
         </div>
-      </div>
     </div>
-  </main>
+</main>
