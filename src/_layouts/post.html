@@ -24,7 +24,7 @@ layout: default
                         le {{ page.date | date: '%d/%m/%Y' }}
                     </span>
 
-                    <span class="tags">{{ page | tag_cloud }}</span>
+                    <span class="tags">{{ page | tags }}</span>
                 </div>
             </div>
         </div>
@@ -33,47 +33,41 @@ layout: default
 
 <main class="container">
     <div class="row">
-        <article class="post col-lg-8 col-md-10 mx-auto">
-            {{ content | extlinks }}
-            {% if page.previous or page.next %}
-                <hr>
-                <div class="clearfix">
-                    {% if page.previous.url %}
-                        <a class="btn btn-primary float-left"
-                           href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}"
-                           data-toggle="tooltip"
-                           data-placement="top" title="{{ page.previous.title }}">&larr;&nbsp;<span
-                                    class="d-none d-md-inline">Article</span> Précédent</a>
-                    {% endif %}
+        <div class="post col-lg-8 col-md-10 mx-auto">
+            <article class="post">
+                {{ content | extlinks }}
+            </article>
 
-                    {% if page.next.url %}
-                        <a class="btn btn-primary float-right"
-                           href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip"
-                           data-placement="top" title="{{ page.next.title }}"><span
-                                    class="d-none d-md-inline">Article</span> Suivant&nbsp;&rarr;</a>
-                    {% endif %}
-                </div>
+            <nav class="clearfix pager">
+                {% if page.previous.url %}
+                    <a class="btn btn-primary float-left"
+                       href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}"
+                       data-toggle="tooltip"
+                       data-placement="top" title="{{ page.previous.title }}">&larr;&nbsp;<span
+                                class="d-none d-md-inline">Article</span> Précédent</a>
+                {% endif %}
+
+                {% if page.next.url %}
+                    <a class="btn btn-primary float-right"
+                       href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip"
+                       data-placement="top" title="{{ page.next.title }}"><span
+                                class="d-none d-md-inline">Article</span> Suivant&nbsp;&rarr;</a>
+                {% endif %}
+            </nav>
+
+            {% if page.comments %}
+                <aside class="comments">
+                    <div id="disqus_thread"></div>
+                </aside>
+                <script>
+                    (function () { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+                        s.src = '{{ site.disqus }}';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
             {% endif %}
-        </article>
-    </div>
-</main>
-
-{% if page.comments %}
-    <div class="container">
-        <div class="row">
-            <div class="comments col-lg-8 col-md-10 mx-auto">
-                <hr>
-                <div id="disqus_thread"></div>
-            </div>
         </div>
     </div>
-    `
-    <script>
-        (function () { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = '{{ site.disqus }}';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-{% endif %}
+</main>

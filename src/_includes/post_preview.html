@@ -14,5 +14,5 @@
             {{ site.author }}
         {% endif %}
         le {{ post.date | date: '%d/%m/%Y' }}</p>
-    <p class="post-tags">{{ post | tag_cloud }}</p>
+    <p class="post-tags">{{ post | tags }}</p>
 </article>
