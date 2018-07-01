@@ -22,37 +22,16 @@ layout: default
 <main class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+                <!-- Home Post List -->
+                {% for post in site.posts limit : 5 %}
+                    {% include post_preview.html %}
+                {% endfor %}
 
-            {{ content | extlinks }}
-
-            <!-- Home Post List -->
-            {% for post in site.posts limit : 5 %}
-
-                <article class="post-preview">
-                    <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
-                        <h2 class="post-title">{{ post.title }}</h2>
-                        {% if post.subtitle %}
-                            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-                        {% else %}
-                            <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
-                        {% endif %}
-                    </a>
-                    <p class="post-meta">Posté par
-                        {% if post.author %}
-                            {{ post.author }}
-                        {% else %}
-                            {{ site.author }}
-                        {% endif %}
-                        le {{ post.date | date: '%d/%m/%Y' }}</p>
-                </article>
-                <hr>
-            {% endfor %}
-
-            <!-- Pager -->
-            <div class="clearfix">
-                <a class="btn btn-primary float-right" href="{{ "/posts" | relative_url }}">Voir tous les articles
-                    &rarr;</a>
-            </div>
+                <!-- Pager -->
+                <div class="clearfix">
+                    <a class="btn btn-primary float-right" href="{{ "/posts" | relative_url }}">Voir tous les articles
+                        &rarr;</a>
+                </div>
         </div>
     </div>
 </main>

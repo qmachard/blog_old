@@ -1,0 +1,15 @@
+.section {
+  display: block;
+
+  & + .section {
+    margin-top: 30px;
+  }
+}
+
+.nav-tags {
+  list-style: disc inside;
+
+  a {
+    display: list-item;
+  }
+}
