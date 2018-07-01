@@ -1,0 +1,30 @@
+---
+layout: default
+background: '/img/bg-index.jpg'
+---
+
+<!-- Page Header -->
+<header class="masthead"{% if page.background %} style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')"{% endif %}>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>{{ page.tag }}</h1>
+                    <span class="subheading">Articles de cette catégorie</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <!-- Home Post List -->
+            {% for post in page.posts %}
+                {% include post_preview.html %}
+            {% endfor %}
+        </div>
+    </div>
+</main>

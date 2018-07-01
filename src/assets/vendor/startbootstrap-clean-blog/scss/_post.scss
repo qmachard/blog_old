@@ -1,5 +1,11 @@
 // Styling for the post page
 .post-preview {
+  & + .post-preview {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid $gray-200;
+  }
+
   > a {
     color: $gray-900;
     &:focus,
@@ -8,8 +14,7 @@
       color: $primary;
     }
     > .post-title {
-      font-size: 30px;
-      margin-top: 30px;
+      font-size: 24px;
       margin-bottom: 10px;
     }
     > .post-subtitle {
@@ -18,7 +23,7 @@
     }
   }
   > .post-meta {
-    font-size: 18px;
+    font-size: 14px;
     font-style: italic;
     margin-top: 0;
     color: $gray-600;
@@ -32,10 +37,29 @@
       }
     }
   }
+
+  > .post-tags {
+    font-size: 14px;
+
+    > a {
+      background: $gray-300;
+      padding: 3px 6px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin: 0 5px 5px 0;
+
+      &:focus,
+      &:hover {
+        background: $primary;
+        color: $white;
+      }
+    }
+  }
+
   @media only screen and (min-width: 768px) {
     > a {
       > .post-title {
-        font-size: 36px;
+        font-size: 28px;
       }
     }
   }

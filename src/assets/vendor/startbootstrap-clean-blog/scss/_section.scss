@@ -1,0 +1,25 @@
+.section {
+  display: block;
+
+  & + .section {
+    margin-top: 30px;
+  }
+}
+
+.nav-tags {
+  margin-top: 20px;
+
+  > a {
+    background: $gray-300;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 0 10px 10px 0;
+
+    &:focus,
+    &:hover {
+      background: $primary;
+      color: $white;
+    }
+  }
+}
