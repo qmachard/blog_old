@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Rendre son site Accessible"
-subtitle: "Définition de l'accessiblité, des bonnes pratiques et des outils."
+excerpt: "Définition de l'accessiblité, des bonnes pratiques et des outils."
 background: '/img/posts/2018-06-14-accessibility.jpg'
 comments: true
 tags: accessibilité html css javascript
