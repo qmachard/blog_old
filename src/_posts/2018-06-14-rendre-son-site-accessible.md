@@ -305,6 +305,141 @@ Rassurez-vous, il existe pas mal de [possibilités pour contourner cette "limite
     height: 0;
 }
 ```
-## Ressources
+### WAI-ARIA
 
-* [http://www.a11ymatters.com/](http://www.a11ymatters.com/)
+On utilise de plus en plus de javascript pour améliorer l'expérience utilisateur. Cependant, les liseuses interprètent très mal ces widgets. Pour améliorer cette prise en charge, le W3C a ajouté des attributs à ses standards, ils sont appelés *WAI-ARIA*.
+
+Ils se découpent en deux catégories :
+
+- Les **rôles** permettent de définir la fonction de l'élément :
+  - Navigation : `role="navigation"` (comme `<nav>`)
+  - Sidebar : `role="complementary"` (comme `<aside>`)
+  - Bannière : `role="banner"`
+  - Recherche : `role="search"`
+  - Onglets : `role="tabgroup"` et `role="tab"`
+  - Etc.
+- Les **propriétés** permettent de définir des états, labels sur les éléments
+  - Élément requis : `aria-required="true"`
+  - Élément désactivé : `aria-disabled="true"`
+  - Élément non-visible : `aria-hidden="true"`
+  - Etc.
+
+Il existe tout un tas d'attributs ARIA. Une liste est disponible sur la [MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics).
+
+Pour voir comment ça fonctionne, prenons l'exemple d'un affichage en onglets.
+
+```html
+<ol>
+  <li id="ch1Tab">
+    <a href="#ch1Panel">Chapitre 1</a>
+  </li>
+  <li id="ch2Tab">
+    <a href="#ch2Panel">Chapitre 2</a>
+  </li>
+  <li id="quizTab">
+    <a href="#quizPanel">Quiz</a>
+  </li>
+</ol>
+
+<div>
+  <div id="ch1Panel">Le contenu du chapitre 1 va ici</div>
+  <div id="ch2Panel">Le contenu du chapitre 2 va ici</div>
+  <div id="quizPanel">Le contenu du Quiz va ici</div>
+</div>
+```
+
+Visuellement, ça fonctionne, mais côté code on ne comprend pas trop...
+
+Voici donc le même widget avec les attributs ARIA ajoutés.
+
+```html
+<ol role="tablist">
+  <li id="ch1Tab" role="tab">
+    <a href="#ch1Panel">Chapter 1</a>
+  </li>
+  <li id="ch2Tab" role="tab">
+    <a href="#ch2Panel">Chapter 2</a>
+  </li>
+  <li id="quizTab" role="tab">
+    <a href="#quizPanel">Quiz</a>
+  </li>
+</ol>
+
+<div>
+  <div id="ch1Panel" role="tabpanel" aria-labelledby="ch1Tab">
+      Chapter 1 content goes here
+  </div>
+  <div id="ch2Panel" role="tabpanel" aria-labelledby="ch2Tab">
+      Chapter 2 content goes here
+  </div>
+  <div id="quizPanel" role="tabpanel" aria-labelledby="quizTab">
+      Contenu du Quiz
+  </div>
+</div>
+```
+
+### Mobile
+
+Concernant le responsive, si le site est optimisé pour une navigation sur mobile c'est top. Pensez néanmoins à ne pas désactiver le zoom sur le viewport afin qu'une personne puisse agrandir ou réduire le texte à sa guise.
+
+Aussi, afin d'afficher un clavier optimisé, il faut utiliser les bons types de champs (`type="email"`, `type="tel"`, etc.).
+
+## Outils et Ressources
+
+### Wave
+
+**[WAVE](https://wave.webaim.org) est une extension gratuite** pour Chrome et Firefox créée par WebAIM. Elle permet de mettre en avant les bonnes et mauvaises pratiques mises en place sur une page web.
+
+![Capture d'écran du plugin WAVE](https://lh3.googleusercontent.com/pWuGtAxAUGMBUtVsQUXIqgK3XAFeMQQIpBtcjGvf_A7gG1_Sba31fAJxXz-IY5R-bmJuT0-r=w800-h600-e365)
+
+Il permet de mettre en avant la structure du document, les liens vides, les balises `alt` sur les images, etc. Mais aussi, il permet d'afficher la page sans CSS et en mode "outline" qui contient seulement la titraille pour comprendre l'organisation de celle-ci. Autre fonction intéressante, il permet de montrer les problèmes liés aux contrastes.
+
+Bien sûr, comme tout outil automatique, **il ne faut pas prendre tout au pied de la lettre**. Par exemple, si l'outil nous dit qu'une balise `alt` n'est pas renseignée, il faut se poser la question pour **savoir si elle a réellement besoin de l'être** ou si l'image n'est là que pour un côté décoratif.
+
+[Découvrir WAVE](https://wave.webaim.org)
+
+### RGAA et WCAG
+
+Même si ces documentations semblent très verbeuses, elles forment de **très bons référentiels** pour savoir si tous les aspects de l'accessibilité sont bien pris en compte. Le RGAA met également à disposition une procédure de tests pour chaque critère.
+
+[Lire le RGAA](https://references.modernisation.gouv.fr/rgaa-accessibilite/)
+
+![Keep calm and RTFM](https://media.forgecdn.net/avatars/101/978/636327059561858229.png)
+
+### Web
+
+Des sites et articles comme celui-ci, il y en a (heureusement) plein d'autres. Voici ceux que je peux vous conseiller.
+
+*Cette liste est non exhaustive et pourra être complétée si je trouve d'autres ressources intéressantes.*
+
+#### [a11ymatters](http://www.a11ymatters.com/)
+
+Ce site est une petite mine d'or, il est spécialisé dans l'accessibilité web et publie des articles sur ce sujet.
+
+Le petit plus, il propose également des "Patterns", qui sont des tutos très bien expliqués sur des widgets régulièrement utilisés sur le web : pagination, formulaire de recherche, etc.
+
+*Le site est en anglais*
+
+#### [MDN WebDoc](https://developer.mozilla.org/fr/docs/Accessibilité)
+
+Créé par Mozilla, il fait partie de l'ensemble de la documentation pour les développeurs web. Je vous conseille de lire l'[article d'introduction à l'accessibilité](https://developer.mozilla.org/fr/Apprendre/a11y/What_is_accessibility), qui permet de comprendre rapidement les bases de l'accessibilité.
+
+*Le site est traduit en français, mais il reste quelques articles en anglais.*
+
+#### [WCAG : Introduction](https://www.w3.org/WAI/standards-guidelines/wcag/)
+
+Introduction officielle à la WCAG, c'est un peu la bible de celui pour qui l'accessibilité est importante.
+
+*Le site est en anglais.*
+
+#### [Alsacréation](https://www.alsacreations.com/outils/guidelines/Guidelines-Accessibilite.md)
+
+Le très connu Alsacréation a écrit toute une guideline complète (open source et en français) sur l'accessibilité.
+
+*Le site est en français.*
+
+## Conclusion
+
+Voilà, vous êtes maintenant prêts pour améliorer l'accessibilité de votre site web. Comme vous avez pu le voir, ce sont de petites choses, mais je pense que vous vous êtes déjà tous retrouvé devant un site qui n'était pas optimisé pour votre support, et vous comprenez donc pourquoi ces petites choses sont importantes.
+
+Il existe beaucoup de règles que je n'ai pas énoncées dans cet article. Je vous conseille néanmoins de [lire le RGAA](https://references.modernisation.gouv.fr/rgaa-accessibilite/) fourni par le ministère de l'Intérieur, car il est complet et assez bien réalisé.
