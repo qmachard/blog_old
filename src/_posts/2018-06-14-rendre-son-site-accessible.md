@@ -27,7 +27,7 @@ Un site web, par définition, répond à un besoin. Il est donc **primordial que
 
 #### Accessibilité + SEO = ❤️
 
-Beaucoup de principes d'accessibilité sont bénéfiques pour le référencement. Il passe notamment par la bonne sémantique de ses pages. Autant faire d'une pierre deux coups.
+Beaucoup de principes d'accessibilité sont **bénéfiques pour le référencement**. Il passe notamment par la bonne sémantique de ses pages. Autant faire d'une pierre deux coups.
 
 #### Éthique et morale
 
@@ -37,7 +37,7 @@ L'accessibilité montre qu'un site est ouvert à l’autre, ce qui favorise son 
 
 Il est important de penser à **tous les cas de "handicap"**, pas seulement les cas courants et ne pas se restreindre à ses propres conditions (réseaux, taille d'écran, système d'exploitation, etc.).
 
-Il faut réussir à se mettre **dans les conditions d'utilisation** et pour cela utiliser des outils spécialisés permettant d'apporter des solutions
+Il faut réussir à se mettre **dans les conditions d'utilisation** et pour cela utiliser des outils spécialisés permettant d'apporter des solutions.
 
 *Faisons un point sur les solutions existantes pour chaque trouble* :
 
@@ -70,17 +70,21 @@ Le W3C a défini un certain nombre de critères dans une norme appelée [*Web Co
 
 En France, le ministère de l'Intérieur en a fait une adaptation appelée [*Référentiel Général d'Accessibilité pour les Administrations* (RGAA)](https://references.modernisation.gouv.fr/rgaa-accessibilite/).
 
-Ces deux normes contiennent 3 niveaux de critères : A, AA et AAA.
+Ces deux normes contiennent 3 niveaux de critères :
+
+* **A**: Niveau standard, ce qu'on va voir dans cet article.
+* **AA**: Niveau avancé.
+* **AAA**: Niveau expert, pour moi très difficile a atteindre, mais on peut réussir a atteindre quelques points.
 
 ## Bonnes pratiques
 
-Maintenant que l'on connaît les problèmes d'accessibilité et les solutions existantes, que doit-on faire en tant que développeur / intégrateur web ? N'ayez crainte, c'est facile !!
+Maintenant que l'on connaît les problèmes d'accessibilité et les solutions existantes, que doit-on faire en tant que développeur / intégrateur web ? **N'ayez crainte, c'est pas si compliqué !!**
 
 ![Go on... (The IT Crowd - Moss)](https://media3.giphy.com/media/3oKIPnbKgN3bXeVpvy/giphy.gif)
 
 ### La sémantique
 
-Comme vous le savez maintenant, les liseuses d'écran, tout comme les robots, s'appuient essentiellement sur le code de votre page web. Il est donc nécessaire d'utiliser le bon balisage HTML.
+Comme vous le savez maintenant, les liseuses d'écran, tout comme les robots, s'appuient essentiellement sur le code de votre page web. Il est donc nécessaire d'**utiliser le bon balisage HTML**.
 
 En plus de l'accessibilité, cela ajoute quelques bénéfices :
 
@@ -90,7 +94,7 @@ En plus de l'accessibilité, cela ajoute quelques bénéfices :
 
 #### La structure de la page
 
-Le but est d'utiliser tout simplement les bonnes balises HTML en fonction de la nature de l'élément afin de hiérarchiser les informations sur la page.
+Le but est d'**utiliser tout simplement les bonnes balises HTML** en fonction de la nature de l'élément afin de hiérarchiser les informations sur la page.
 
 - En-têtes de page, de section ou d'articles : `<header>`
 - Pied de page, de section ou d'articles : `<footer>`
@@ -182,11 +186,11 @@ This is the first subsection of my document. I'd love people to be able to find 
 <br><br>
 ```
 
-Visuellement les deux codes donnent le même résultat. On se rend bien compte que le premier est bien plus lisible que le second.
+Visuellement, les deux codes donnent le même résultat. On se rend bien compte que le premier est bien plus lisible que le second.
 
 #### Actions et formulaires
 
-Il faut essayer d'**utiliser au maximum les balises prévues** pour l'action souhaitée (`<button>`, `<a>`, etc.). **Le label de ces balises doit être explicite** pour éviter de se retrouver avec des "clichez ici" sur toute la page.
+Il faut essayer d'**utiliser au maximum les balises prévues** pour l'action souhaitée (`<button>`, `<a>`, etc.). **Le label de ces balises doit être explicite** pour éviter de se retrouver avec des "cliquez ici" sur toute la page.
 
 Remplacez :
 
@@ -249,13 +253,13 @@ Plus d'informations sur [les tableaux accessibles sur la MDN web docs](https://d
 
 #### Images
 
-Les images, qui ne sont pas décoratives, **doivent avoir un texte alternatif** afin d'être interprétée par le public malvoyant. Celui-ci doit être une description claire de l'image.
+Les images, qui ne sont pas décoratives, **doivent avoir un texte alternatif** afin d'être interprétées par le public malvoyant. Celui-ci doit être une description claire de l'image.
 
 ```html
 <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
 ```
 
-Plus d'informations [sur les images accessibles](http://mdn.github.io/learning-area/accessibility/html/accessible-image.html).
+[Plus d'informations sur les images accessibles](http://mdn.github.io/learning-area/accessibility/html/accessible-image.html).
 
 ### Design et CSS
 
@@ -305,6 +309,8 @@ Rassurez-vous, il existe pas mal de [possibilités pour contourner cette "limite
     height: 0;
 }
 ```
+![GIF de la scène "On me voit, on me voit plus" du film Asterix et Obélix: Mission Cléopatre](https://78.media.tumblr.com/c0d4cf8e8e91c5f72f31605da8a537f0/tumblr_inline_oya8nkAdWz1s9x8us_540.gif)
+
 ### WAI-ARIA
 
 On utilise de plus en plus de javascript pour améliorer l'expérience utilisateur. Cependant, les liseuses interprètent très mal ces widgets. Pour améliorer cette prise en charge, le W3C a ajouté des attributs à ses standards, ils sont appelés *WAI-ARIA*.
@@ -380,11 +386,13 @@ Voici donc le même widget avec les attributs ARIA ajoutés.
 
 ### Mobile
 
-Concernant le responsive, si le site est optimisé pour une navigation sur mobile c'est top. Pensez néanmoins à ne pas désactiver le zoom sur le viewport afin qu'une personne puisse agrandir ou réduire le texte à sa guise.
+Concernant le responsive, **si le site est optimisé pour une navigation sur mobile c'est parfait**. Pensez néanmoins à ne pas désactiver le zoom sur le viewport afin qu'une personne puisse agrandir ou réduire le texte à sa guise.
 
 Aussi, afin d'afficher un clavier optimisé, il faut utiliser les bons types de champs (`type="email"`, `type="tel"`, etc.).
 
 ## Outils et Ressources
+
+Je vous présente quelques outils permettant de tester ou d'améliorer l'accessibilité d'une page web.
 
 ### Wave
 
@@ -412,34 +420,42 @@ Des sites et articles comme celui-ci, il y en a (heureusement) plein d'autres. V
 
 *Cette liste est non exhaustive et pourra être complétée si je trouve d'autres ressources intéressantes.*
 
-#### [a11ymatters](http://www.a11ymatters.com/)
+#### a11ymatters
 
 Ce site est une petite mine d'or, il est spécialisé dans l'accessibilité web et publie des articles sur ce sujet.
 
 Le petit plus, il propose également des "Patterns", qui sont des tutos très bien expliqués sur des widgets régulièrement utilisés sur le web : pagination, formulaire de recherche, etc.
 
+[Visiter a11ymatters](http://www.a11ymatters.com/)
+
 *Le site est en anglais*
 
-#### [MDN WebDoc](https://developer.mozilla.org/fr/docs/Accessibilité)
+#### MDN WebDoc
 
 Créé par Mozilla, il fait partie de l'ensemble de la documentation pour les développeurs web. Je vous conseille de lire l'[article d'introduction à l'accessibilité](https://developer.mozilla.org/fr/Apprendre/a11y/What_is_accessibility), qui permet de comprendre rapidement les bases de l'accessibilité.
 
+[Visiter MDN WebDoc](https://developer.mozilla.org/fr/docs/Accessibilité)
+
 *Le site est traduit en français, mais il reste quelques articles en anglais.*
 
-#### [WCAG : Introduction](https://www.w3.org/WAI/standards-guidelines/wcag/)
+#### WCAG : Introduction
 
 Introduction officielle à la WCAG, c'est un peu la bible de celui pour qui l'accessibilité est importante.
 
+[Lire l'introduction au WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/)
+
 *Le site est en anglais.*
 
-#### [Alsacréation](https://www.alsacreations.com/outils/guidelines/Guidelines-Accessibilite.md)
+#### Alsacréation
 
 Le très connu Alsacréation a écrit toute une guideline complète (open source et en français) sur l'accessibilité.
+
+[Visiter Alsacréation](https://www.alsacreations.com/outils/guidelines/Guidelines-Accessibilite.md)
 
 *Le site est en français.*
 
 ## Conclusion
 
-Voilà, vous êtes maintenant prêts pour améliorer l'accessibilité de votre site web. Comme vous avez pu le voir, ce sont de petites choses, mais je pense que vous vous êtes déjà tous retrouvé devant un site qui n'était pas optimisé pour votre support, et vous comprenez donc pourquoi ces petites choses sont importantes.
+Voilà, vous êtes maintenant prêts pour améliorer l'accessibilité de votre site web. Comme vous avez pu le voir, ce sont de petites choses, mais je pense que vous vous êtes déjà tous retrouvés devant un site qui n'était pas optimisé pour votre support, et vous comprenez donc pourquoi ces petites choses sont importantes.
 
-Il existe beaucoup de règles que je n'ai pas énoncées dans cet article. Je vous conseille néanmoins de [lire le RGAA](https://references.modernisation.gouv.fr/rgaa-accessibilite/) fourni par le ministère de l'Intérieur, car il est complet et assez bien réalisé.
+Il existe beaucoup de règles que je n'ai pas énoncées dans cet article. Je vous conseille donc de [lire le RGAA](https://references.modernisation.gouv.fr/rgaa-accessibilite/).
