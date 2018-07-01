@@ -74,14 +74,13 @@ header.masthead {
     }
 
     .tags {
-      font-size: 0;
+      font-size: 14px;
 
       a {
-        font-size: 14px;
         background: rgba(255, 255, 255, 0.5);
         padding: 3px 6px;
         border-radius: 5px;
-        margin: 5px;
+        margin: 0 5px 5px 0;
 
         &:hover {
           text-decoration: none;
