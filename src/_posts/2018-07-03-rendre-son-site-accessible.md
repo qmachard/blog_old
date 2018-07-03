@@ -448,11 +448,11 @@ Introduction officielle à la WCAG, c'est un peu la bible de celui pour qui l'ac
 
 *Le site est en anglais.*
 
-#### Alsacréation
+#### Alsacréations
 
-Le très connu Alsacréation a écrit toute une guideline complète (open source et en français) sur l'accessibilité.
+Le très connu Alsacréations a écrit toute une guideline complète (open source et en français) sur l'accessibilité.
 
-[Visiter Alsacréation](https://www.alsacreations.com/outils/guidelines/Guidelines-Accessibilite.md)
+[Visiter Alsacréations](https://www.alsacreations.com/outils/guidelines/Guidelines-Accessibilite.md)
 
 *Le site est en français.*
 
