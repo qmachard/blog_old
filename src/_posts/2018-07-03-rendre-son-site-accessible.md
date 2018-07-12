@@ -432,6 +432,10 @@ Le petit plus, il propose également des "Patterns", qui sont des tutos très bi
 
 *Le site est en anglais*
 
+Dans le même style, il y a le [site de l'organisme "Accede-web"](https://www.accede-web.com/notices/interface-riche/).
+
+*En français, cette fois-ci*
+
 #### MDN WebDoc
 
 Créé par Mozilla, il fait partie de l'ensemble de la documentation pour les développeurs web. Je vous conseille de lire l'[article d'introduction à l'accessibilité](https://developer.mozilla.org/fr/Apprendre/a11y/What_is_accessibility), qui permet de comprendre rapidement les bases de l'accessibilité.
