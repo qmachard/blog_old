@@ -9,25 +9,25 @@ tags: html css bem
 
 # Introduction à BEM
 
-Cet article s'adresse surtout aux intégrateurs HTML / CSS. Il permet de définir une nommenclature pour le CSS car, comme toujours, le plus dur est de nommer les choses. Voyons donc une approche différente de l'intégration avec BEM.
+Cet article s'adresse dans un premier temps aux intégrateurs web. Il permet de définir une nommenclature des classes pour le CSS. Car, comme toujours, le plus dur est de nommer les choses. Voyons donc une approche différente de l'intégration avec BEM.
 
 ## BEM, Késako ?
 
 Créée par [@iamstarkov](https://twitter.com/iamstarkov) et [@flatdrop](https://github.com/floatdrop), BEM, *Block Element Modifier*, est une convention de nommage qui s'applique sur le principe des **éléments réutilisables**.
 
-BEM se base donc **uniquement sur des classes CSS** et est donc complètement **décorrélé de la sémantique** HTML ce qui est un **point positif pour l'accessibilité** (Si vous ne l'avez pas encore lu, je vous renvois sur mon [article d'introduction à l'accessibilité]({% post_url 2018-07-03-rendre-son-site-accessible %})).
+BEM se base donc **uniquement sur des classes CSS** et est donc complètement **décorrélé de la sémantique** HTML ce qui est un **point positif pour l'accessibilité**.
 
-La règle d'or à retenir est :
+La règle d'or à retenir est donc :
 
 > **Tout élément devant être stylisé doit avoir une classe.**
 
- Comme toute convention, elle a ses avantages et ses limites.
+ Comme toute convention, elle a ses avantages et ses limites, voyons donc ces points en détails.
 
 ### Avantages
 
 #### Performance
 
-La nommenclature de BEM permet d'avoir **la plupart des classes CSS au premier niveau**. On évite ainsi la cascade CSS qui est plus longue à être interprétée par le navigateur. Et oui, `.foo > .bar` est plus long à interprété par le navigateur que `.foo_bar`.
+La nommenclature de BEM permet d'avoir **la plupart des classes CSS au premier niveau**. On évite ainsi la cascade CSS qui est plus longue à être interprétée par le navigateur. Et oui, `.foo > .bar` est plus long que `.foo_bar`.
 
 ![Homme montrant sa montre pour dire que le temps presse.](https://media.giphy.com/media/26n6xBpxNXExDfuKc/giphy.gif)
 
@@ -53,11 +53,13 @@ h2 {
 
 Aussi, il permet de **fractionner son code** et **faciliter l'utilisation des pré-processeurs CSS** (tels que SASS ou SCSS).
 
-Cette nommenclature sera également **parfaite pour une intégration en mode "Atomic"** (Wait! Je garde ça pour un autre article... *Teaser!*). Mais aussi en React et Angular, par exemple, où la logique est de faire des composants réutilisables.
+Cette nommenclature sera également **parfaite pour une intégration en mode "Atomic"** (Wait! Je garde ça pour un autre article... *Teaser!*). Mais aussi en React et Angular, par exemple, où la logique est de **faire des composants réutilisables**.
 
 #### Structuration
 
-Comme on a pu le voir plus haut, chaque block / élément **ne dépend pas de son tag HTML**. On peut donc facilement optimiser le SEO et l'accessibilité.
+Comme on a pu le voir plus haut, chaque block / élément **ne dépendra pas de son tag HTML**. On peut donc facilement optimiser le SEO et l'accessibilité.
+
+Si vous ne l'avez pas encore lu, je vous renvois sur mon [article d'introduction à l'accessibilité]({% post_url 2018-07-03-rendre-son-site-accessible %}).
 
 ### Inconvénients
 
@@ -83,39 +85,57 @@ Maintenant que l'on a fait la liste des avantages et inconvénients d'une telle 
 
 Un *block* est l'**élément parent de notre composant**, le but est de tout encapsuler dans celui-ci, dans la limite du possible bien évidemment. Il se note de la manière suivante : `block-name`, facile non ?
 
-*Dans l'exemple ci-dessus, "menu" est un block. Sa classe sera au plus simple : `menu`*
+*Dans l'exemple ci-dessus, "menu" est un block. Sa classe sera : `menu`, c'est simple !*
 
 #### E comme Element
 
-Un *element* est **ce qui compose le block**. Comme vu plus haut, "tout ce qui a besoin d'être stylisé doit avoir une classe", nous allons donc "classer" les éléments, pour ce faire la notation sera la suivante : `block-name_element-name`.
+Un *element* est **ce qui compose le bloc. Je le rappelle, *"tout ce qui a besoin d'être stylisé doit avoir une classe"*, nous allons donc "classer" les éléments, pour ce faire la notation sera la suivante : `block-name_element-name`.
 
 *Dans l'exemple ci-dessus, "menu elements" seront des élements. Leur classe sera certainement : `.menu_element`*.
 
+L'avantage de BEM est qu'on aura pas de sélecteur du style `.block-name > .element-name`. Ainsi, pour surclasser cet élément il n'y aura pas besoin de refaire toute la chaîne, ni d'ajouter un !important d'ailleurs.
+
 #### Et le M ? M pour Modifier
 
-Un *modifier* est un état du block, un mode. Par exemple un block `button` qui par défaut est blanc peut avoir une couleur différente si il permet de valider ou supprimer quelque-chose. La syntaxe sera la suivante `block-name_element-name--modifier`
+Un *modifier* est **une variante du block** (un état, un mode, etc.).  La syntaxe sera la suivante `block-name_element-name--modifier`.
 
-*Dans l'exemple ci-dessus, le block `button` aura un modifier "theme green" qui permettra d'afficher le bouton en vert*.
+*Dans l'exemple ci-dessus, le bloc `button` aura un modifier pourra être dans certains cas vert. On créera donc un modifier `button--green` qui permettra d'afficher le bouton en vert*.
 
-> J'ai pas tout compris, un exemple ne serait pas de refus [https://codepen.io/anon/pen/qoEZOO](https://codepen.io/anon/pen/qoEZOO)
+Ces variantes peuvent s'additionner sur un bloc ou un élement comme des options sur le block ou sur les élements. Par exemple, si on veut un petit bouton vert, on ecrira en HTML :
 
-### Exemple
+```html
+<button class="button button--green button--small">Mon bouton</button>
+```
+
+C'est dans ce cadre, qu'on pourrait dire que BEM est verbeux, il peut effectivement y avoir plusieurs classes pour un même objet.
+
+> Mon conseil pour les modifiers, c'est de garder une notion générique, c'est a dire ne pas avoir quelque-chose comme `button--homepage` qui aurait un style spécifique à la page d'accueil. On perdrait ainsi tout l'avantage de la réutilisablilité.
+
+![](http://fr.web.img4.acsta.net/r_1280_720/newsv7/17/08/09/14/57/3944530.jpg)
+
+### "J'ai pas tout compris, un exemple ne serait pas de refus"
+
+> Cet exemple est diponible ici :  [https://codepen.io/qmachard/pen/rrdWXz](https://codepen.io/qmachard/pen/rrdWXz)
 
 Prenons l'exemple d'un encart simple, qui peut avoir une image, un titre et un texte et qui peut être de couleur blanche (par défaut) ou gris.
 
-![](C:\Users\qmachard\Perso\blog\src\img\posts\exemple_bem_1.png)
+![Illustration de l'exemple](/img/posts/bem/example-card.png)
+
+*Afin de bien séparer les choses, nous auront deux fichiers : un fichier html `card.html` qui contiendra le code de notre bloc. Et un fichier `_card.scss` qui contiendra uniquement le style de notre bloc et préprocessé par du SCSS.*
 
 #### Block
 
-Pour le block c'est simple on l'appellera `card`. Voici son code HTML
+Pour le bloc c'est simple on l'appellera `card`. Voici son code HTML :
 
 ```html
+<!-- card.html -->
 <div class="card"></div>
 ```
 
 Et sa classe associée :
 
 ```scss
+/* _card.scss */
 .card {
   display: block;
   background: white;
@@ -129,6 +149,7 @@ Pour l'instant ça ne change pas grand chose effectivement. Mais voyons la suite
 Pour les éléments, il y aura donc une image, un titre et un texte :
 
 ```html
+<!-- card.html -->
 <div class="card">
   <img class="card_image" src="http://placehold.it/500x200" alt="Fake Image">
   <div class="card_content">
@@ -138,9 +159,10 @@ Pour les éléments, il y aura donc une image, un titre et un texte :
 </div>
 ```
 
-Et son CSS
+Et son style :
 
 ```scss
+/* _card.scss */
 .card {
   display: block;
   background: white;
@@ -169,6 +191,8 @@ Et son CSS
 
 Voilà, tout le CSS est au même niveau, c'est lisible et optimisé car sans cascade de type `.card > .title { ... }`.
 
+> Cette approche change un peu par rapport au spécifications de BEM. Pour le titre, il aurait fallu faire `card_content_title` mais je trouve ça réellement trop verbeux. Rien ne vous empèche de le faire si vous préfèrez.
+
 #### Modifier
 
 Ici on complique un peu, le modifier est une classe en plus qui peut être appliqué à notre block, _en plus_ de la classe de base
@@ -176,6 +200,7 @@ Ici on complique un peu, le modifier est une classe en plus qui peut être appli
 Voici donc maintenant le HTML de notre block en mode gris :
 
 ```html
+<!-- card.html -->
 <div class="card card--bg-grey">
   <img class="card_image" src="https://picsum.photos/500/300" alt="Fake Image">
   <div class="card_content">
@@ -185,16 +210,17 @@ Voici donc maintenant le HTML de notre block en mode gris :
 </div>
 ```
 
-Et son CSS
+Et son style:
 
 ```scss
+/* _card.scss */
 .card {
   display: block;
   background: white;
 
   /* MODIFIERS */
 
-  &--bg-grey { /* Petit tips SCSS : sera rendu .card--black car le & reprend le nom de la classe */
+  &--bg-grey { // Sera rendu .card--bg-grey car le & reprend le nom de la classe
     background: #999999;
   }
 }
@@ -215,7 +241,7 @@ Et son CSS
   color: #CCCCCC;
 
   /* On modifie seulement la couleur du titre quand il est dans un block modifié */
-  .card--black & { /* Petit tips SCSS : sera rendu .card--black .card_title car le & reprend le nom de la classe */
+  .card--bg-grey & { // Sera rendu .card--bg-grey .card_title car le & reprend le nom de la classe
     color: #FFFFFF;
   }
 }
@@ -225,17 +251,20 @@ Et son CSS
   color: #000000;
 
   /* On modifie seulement la couleur du texte quand il est dans un block modifié */
-  .card--black & { /* Petit tips SCSS : sera rendu .card--black .card_text car le & reprend le nom de la classe */
+  .card--bg-grey & { // Sera rendu .card--bg-grey .card_text car le & reprend le nom de la classe
     color: #FFFFFF;
   }
 }
 ```
 
-On peut voir que le seule cas de cascade que l'on a est sur le modifier, ce qui rend le code optimisé. Chaque modification qu'apporte un modifier à un élément est écrit dans la classe css de celui-ci (`.card_text` -> `.card--black .card_text`), c'est donc plus facile à modifier et retrouver.
+On peut voir que le seule cas de cascade que l'on a est sur le modifier, ce qui rend le code optimisé. 
 
-Et voilà, votre premier Block avec la nomenclature BEM. Demain, si mon encart est cliquable, on pourra le transformer en lien facilement, car il suffira uniquement de changer sont tag HTML par un `<a></a>` et de passer tous les éléments en inline. On ajoutera également un état hover à ce block qui modifiera l'ombre et la couleur du titre.
+Chaque modification qu'apporte un modifier à un élément est écrit dans la classe css de celui-ci (`.card_text` -> `.card--black .card_text`), c'est donc plus facile à modifier et retrouver.
+
+**Voici donc votre premier Block avec la nomenclature BEM.** Demain, si mon encart est cliquable, on pourra le transformer en lien facilement, car il suffira uniquement de changer sont tag HTML par un `<a></a>` et de passer tous les éléments en inline. On ajoutera également un état hover à ce block qui modifiera l'ombre et la couleur du titre.
 
 ```html
+<!-- card.html -->
 <a class="card card--black">
   <img class="card_image" src="http://placehold.it/500x200" alt="Fake Image">
   <span class="card_content">
@@ -246,6 +275,7 @@ Et voilà, votre premier Block avec la nomenclature BEM. Demain, si mon encart e
 ```
 
 ```css
+/* _card.scss */
 .card {
   display: block;
   background: white;
@@ -300,11 +330,12 @@ Et voilà, votre premier Block avec la nomenclature BEM. Demain, si mon encart e
 
 Voyons quelque-chose d'un peu plus touchy. Il se peut, dans le cadre d'une molécule par exemple, qu'un block se retrouve dans un autre et a besoin d'un style différent. Deux cas se présentent donc : soit on lui créé un nouveau modifier si il est réutilisé ailleurs, soit on le modifie en cascade si le cas ne se présente que pour cette imbrication.
 
-#### Exemple
+#### Je m'explique avec un exemple
 
 Reprenons notre exemple d'encart. Nous voulons mettre un bouton qui se positionne tout en bas du cadre. On dira dans ce cas : "Mon cadre contient un block bouton qui sera positionné tout en bas". Il est donc logique d'avoir une cascade : `.card .button { ... }`.
 
 ```html
+<!-- card.html -->
 <div class="card card--black">
   <img class="card_image" src="http://placehold.it/500x200" alt="Fake Image">
   <div class="card_content">
@@ -318,6 +349,7 @@ Reprenons notre exemple d'encart. Nous voulons mettre un bouton qui se positionn
 ```
 
 ```css
+/* _button.scss */
 .button {
   background: #47cf73;
   border: none;
@@ -332,6 +364,7 @@ Reprenons notre exemple d'encart. Nous voulons mettre un bouton qui se positionn
 ```
 
 ```css
+/* _card.scss */
 .card {
   display: block;
   position: relative;
@@ -350,6 +383,7 @@ Reprenons notre exemple d'encart. Nous voulons mettre un bouton qui se positionn
   }
 
   /* SUB-BLOCKS */
+    
   .button {
     width: 100%;
     margin-top: 20px;
@@ -363,12 +397,14 @@ Voilà, vous savez tout !
 
 ## Pour aller plus loin
 
-Comme toujours, je vous mets une liste d'articles que je trouve intéressants à ce sujet :
+Comme toujours, je vous mets quelques liens que je trouve intéressants à ce sujet :
 
 * [Introduction officielle à BEM](http://getbem.com/introduction/) (en anglais)
 * [Article sur les bonnes pratiques CSS d'Alsacreations](https://www.alsacreations.com/article/lire/1641-bonnes-pratiques-en-css-bem-et-oocss.html) (en français)
 * [Définition de BEM sur le (super) blog putaindecode.io](http://putaindecode.io/fr/articles/css/bem/) (en français)
 
 N'hésitez pas à partager **vos questions ou vos ressources en commentaires** !
+
+![GIF: Good Bye](https://media.giphy.com/media/3o6EhGvKschtbrRjX2/giphy.gif)
 
 A bientôt !
