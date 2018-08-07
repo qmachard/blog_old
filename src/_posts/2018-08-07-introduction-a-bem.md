@@ -2,7 +2,7 @@
 layout: post
 title:  "Introduction à BEM"
 excerpt: "BEM, Block Element Modifier, définition, et cas d'utilisation."
-background: '/img/posts/2018-04-12-hello-world.jpg'
+background: '/img/posts/covers/bem.jpg'
 comments: true
 tags: html css bem
 ---
