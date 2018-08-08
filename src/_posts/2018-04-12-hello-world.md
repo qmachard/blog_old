@@ -5,8 +5,7 @@ excerpt: "Petite présentation de mon blog, mes recherches et mon nouveau challe
 background: '/img/posts/2018-04-12-hello-world.jpg'
 comments: true
 tags: édito
-image:
-    path: '/img/posts/2018-04-12-hello-world.jpg'
+image: '/img/posts/2018-04-12-hello-world.jpg'
 ---
 
 # Hello World!
