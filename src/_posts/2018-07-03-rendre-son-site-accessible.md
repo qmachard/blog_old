@@ -5,8 +5,7 @@ excerpt: "Définition de l'accessiblité, des bonnes pratiques et des outils."
 background: '/img/posts/2018-06-14-accessibility.jpg'
 comments: true
 tags: accessibilité html css javascript
-image:
-    path: '/img/posts/2018-06-14-accessibility.jpg'
+image: '/img/posts/2018-06-14-accessibility.jpg'
 ---
 
 # Rendre son site accessible
