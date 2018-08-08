@@ -88,7 +88,7 @@ Maintenant que l'on a fait la liste des avantages et inconvénients d'une telle 
 
 Un *block* est **l'élément parent de notre composant**, le but est de tout encapsuler dans celui-ci, dans la limite du possible bien évidemment. Sa classe se nomme de la manière suivante : `block-name`, facile non ?
 
-*Dans l'exemple ci-dessus, "menu" est un bloc. Sa classe sera : `menu`, c'est simple !
+*Dans l'exemple ci-dessus, "menu" est un bloc. Sa classe sera : `menu`, c'est simple !*
 
 > La notation officielle de BEM est `BlockName`. Mais, par habitude, j'ai du mal à utiliser du CamelCase dans CSS et préfère utiliser des tirets.
 
@@ -266,11 +266,12 @@ Et son style:
 }
 ```
 
-On peut voir que le seul cas de cascade que l'on a est sûr le modifier, ce qui rend le code optimisé. 
+On peut voir que le seul cas de cascade que l'on a est sur le modifier, ce qui rend le code optimisé. 
 
 Chaque modification qu'apporte un modifier à un élément est écrit dans la classe css de celui-ci (`.card_text` -> `.card--black .card_text`), c'est donc plus facile à modifier et retrouver.
 
-**Voici donc votre premier Block avec la nomenclature BEM.** Un jour, si mon encart est cliquable, on pourra le transformer en lien facilement, car il suffira uniquement de changer sont tag HTML par un `<a></a>` et de passer tous les éléments en inline. On ajoutera également un état hover à ce bloc qui modifiera l'ombre et la couleur du titre.
+**Voici donc votre premier Block avec la nomenclature BEM.** 
+Un jour, si l'encart est cliquable, on pourra le transformer en lien facilement, car il suffira uniquement de changer sont tag HTML par un `<a></a>` et de passer tous les éléments en inline. On ajoutera également un état hover à ce bloc qui modifiera l'ombre et la couleur du titre.
 
 Comme ceci :
 
