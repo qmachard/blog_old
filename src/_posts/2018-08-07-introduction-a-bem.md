@@ -96,7 +96,7 @@ Un *block* est **l'élément parent de notre composant**, le but est de tout enc
 
 Un *element* est **ce qui compose le bloc**. Je le rappelle *"tout ce qui a besoin d'être stylisé doit avoir une classe"*, nous allons donc "classer" les éléments, pour ce faire la notation sera la suivante : `block-name_element-name`.
 
-*Dans l'exemple ci-dessus, les « menu elements" seront des éléments. Leur classe sera certainement : `.menu_element`*.
+*Dans l'exemple ci-dessus, les "menu elements" seront des éléments. Leur classe sera certainement : `.menu_element`*.
 
 L'avantage de BEM est qu'on n’aura pas de sélecteur du style `.block-name > .element-name`. Ainsi, pour surclasser cet élément il n'y aura pas besoin de refaire toute la chaîne ni d'ajouter un `!important`.
 
