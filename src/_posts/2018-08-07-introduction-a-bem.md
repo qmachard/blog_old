@@ -5,6 +5,8 @@ excerpt: "BEM, Block Element Modifier, définition, et cas d'utilisation."
 background: '/img/posts/covers/bem.jpg'
 comments: true
 tags: html css bem
+image:
+    path: '/img/posts/covers/bem.jpg'
 ---
 
 # Introduction à BEM

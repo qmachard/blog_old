@@ -11,6 +11,7 @@ group :jekyll_plugins do
   gem "jekyll-extlinks", "~> 0.0.4"
   gem "jekyll-tagging"
   gem "rouge", "~> 2.2.1"
+  gem "jekyll-seo-tag"
 end
 
 require 'rbconfig'

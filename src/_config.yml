@@ -31,6 +31,11 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-extlinks
+  - jekyll-seo-tag
 
 analytics:         UA-120870313-1
 disqus:            https://quentin-machard-blog.disqus.com/embed.js
+
+twitter:
+  username: quentinmachard
+  card: summary
