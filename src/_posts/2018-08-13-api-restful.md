@@ -18,59 +18,131 @@ Voyons comment cela se présente.
 
 ## Les ressources
 
-==TODO==
+Une API sert avant tout à **executer des actions sur des ressources** métiers. Ils faut donc dans un premier temps **définir ces ressources**.
 
-* Introduction sur les ressources
-* Introduction sur JSON
+> Par exemple, si je veux créer une API permettant de gérer une bibliothèque musicale. Mes ressources seront donc : les albums, les artistes et les pistes.
+
+Les ressources **se présentent sous la forme d'un objet JSON** et se découpent en plusieurs catégories : les **entités**, les **collections** et les **erreurs**.
 
 ### Entité
 
-==TODO==
+Une entité est la **représentation la plus simple d'une ressource**. Elle permet simplement d'en afficher les détails.
 
-- Détail d'une entité
+> Voici un exemple de représentation de mon entité "album"
+> ```json
+> {
+>    	"id": 1,
+>     "title": "The Groove Sessions",
+>     "year": 2007,
+>     "artwork": "/path/to/artwork.jpeg"
+> }
+> ```
 
 ### Collections
 
-==TODO==
+Une collection est **une liste d'entités**.
 
-* Liste d'entité
-* Pagination
+> Exemple de la liste de mes albums
+> ```json
+> {
+> 	"items": [
+>         {
+>             "id": 7291,
+>             "title": "The Groove Sessions"
+>         },
+>         {
+>             "id": 7745,
+>             "title": "Epoch"
+>         },
+>         ...
+>     ],
+>     "count": 10,
+>     "limit": 10,
+> 	"total": 26
+> }
+> ```
+
+Comme on peut le voir dans l'exemple, l'avantage de retourner un objet et non directement une liste, c'est qu'on peut ajouter la pagination de notre liste ou des éléments associés à celle-ci.
+
+### Erreurs
+
+Une erreur n'est pas vraiment une ressource réelle, mais elle a tout de même un schéma qui est intéressant à travailler.
+
+> Voyons un exemple d'erreur
+> ```json
+> {
+> 	"message": "Album not found",
+>     "status": 404,
+>     "type": "not_found"
+> }
+> ```
 
 ## Les URIs
 
 ### URI = Ressource
 
-La norme REST est, avant tout, **basé sur les ressources**. C'est à dire que **chaque URI correspond à une ressource de notre système** et non à une action. Il faut donc definir les ressources de son projet.
+Il est important de garder une rêgle en tête : "**Chaque URI correspond à une ressource de notre système et non à une action**".
 
-Il y a deux types de resources : les **entités** et les **collections d'entités**.
+#### Collection
 
->  Par exemple, si je veux créer une API permettant de gérer une bibliothèque musicale. Mes ressources seront donc : les albums, les artistes et les pistes.
+Les URI permettant de requêter une liste d'entités (une collection, donc) se présente sous la forme `/entities`. 
 
-Pour récupérer une liste d'entités, nous allons donc créer une URI du genre `/resources`. Ensuite, pour récupérer une entité de cette collection la traduction en URI sera `/resources/{idResource}`.
+> L'URI correspondante à ma collection d'albums sera `/albums`.
 
-> L'URI correspondante à ma collection d'albums sera `/albums`. Et pour en récupérer un en particulier `/albums/{album}`
+#### Entité
 
-### Le cas des sous-ressources
+Pour requêter une entité il faut garder en tête cette phrase : "je requête une entité de ma collection", ainsi, l'URI tombe sous le sens et sera `/entities/{entity-id}`
+
+> L'URI correspondante à un album sera `/albums/{album-id}`
+
+#### Le cas des sous-ressources
 
 Dans certains cas, une ressources est dépendante d'une autre, c'est ce que l'on appelle une **sous-ressource**.
 
-L'URI correspondante à une collection de sous-ressources sera `/resources/{idResource}/sub-resources` et pour récupérer une entité `/ressources/{idResource}/sous-ressources/{idSubResource}`.
+L'URI correspondante à une collection de sous-ressources sera `/entities/{entity-id}/sub-resources` et pour récupérer une entité `/entities/{entity-id}/sub-resources/{sub-resource-id}`.
 
-> Dans l'exemple, on peut se dire que les titres seront des enfants d'un album. Pour les lister nous aurons donc `/albums/{album}/tracks` et pour récupérer un titre `/albums/{album}/tracks/{track}`.
+> Dans l'exemple, on peut se dire que les titres seront des enfants d'un album. On pourra donc avoir ces URI :
+>
+> * Lister les titres : `/albums/{album-id}/tracks` 
+> * Récupérer un titre `/albums/{album-id}/tracks/{track-id}`
 
 ### Utilisation des paramètres de requête
 
-==TODO==
+Les paramètres de requête (appelés QueryParams) sont des **paramètres *optionnels*** qui s'ajoute à la fin de mon URI.
 
-* Recherche
-* Filtrage
-* Pagination
-* Tri
-* Format
+#### Rechercher
 
-### Actions particulières
+Comme Google, on peut utiliser un paramètre `q` pour faire une recherche sur une collection.
 
-==TODO==
+> Pour rechercher les albums on peut faire quelque-chose comme `/albums?q=Dyna-Mite`
+
+#### Filtrer
+
+Les paramètres permettent également de filtrer une collection. On utilisera généralement l'attribut de la ressource comme clé.
+
+> Pour lister les albums d'une année spécifique on peut prévoir une URI comme `/albums?year=2007`
+
+#### Pagination
+
+On peut paginer simplement une collection comme on le ferait sur un site standard en ajoutant deux paramètres `page` permettant d'afficher une page et `limit` permettant de spécifier le nombre d'item par page.
+
+> Pour pagination mes albums par pas de 10 et sélectionner la deuxième page, je ferais certainement quelque-chose comme `/albums?page=2&limit=10`
+
+Il y a d'autres types de pagination, par exemple on peut paginer par gamme et prévoir un paramètre de type `range=0-10`, etc.
+
+#### Tri
+
+Afin de trier une collection, les query params sont la solution par excellence. Il suffit d'ajouter un parametre `sort` et le tour est jouer. 
+
+Afin de choisir dans quel ordre trier mes élements, j'ajoute un `-` quand il s'agit d'un ordre décroissant.
+
+> Pour trier les albums par années décroissante mon URI sera `/albums?sort=-year`.
+
+#### Format
+
+Une API doit pouvoir s'adapter aux besoins des clients (applications, services, etc.). On peut donc leur laisser la main sur les données qu'ils ont besoin et ainsi optimiser le poids des requêtes. On peut donc ajouter un paramètre `fields` pour lister les champs à remonter lors de l'appel.
+
+> Si on veut lister les albums en affichant seulement leur titre, l'URI sera `/albums?fields=title`
 
 ## Les verbes HTTP
 
@@ -95,6 +167,14 @@ Pour ce faire, nous allons utiliser [**les verbes que met HTTP à notre disposit
 > * `PATCH /albums/{album}` : Modifie l'album
 > * `DELETE /albums/{album}` : Supprime l'album
 
+#### Idempotence
+
+L'idempotence est le fait que lorsque qu'une requête est appelée plusieurs fois, le résultat obtenu de varie pas.
+
+Les verbes `GET`, `PUT`, `PATCH`, `DELETE` sont idempotents. Seul `POST` ne l'est pas car il créé une entité à chaque appel.
+
+Cf. [Idempotent REST APIs](https://restfulapi.net/idempotent-rest-apis/)
+
 ### Le cas des ressources liées
 
 Afin de lier deux ressources entre elles sans définir pour autant de lien de parenté on peut utiliser le verbe `PUT`.
@@ -105,7 +185,25 @@ Afin de lier deux ressources entre elles sans définir pour autant de lien de pa
 > * `PUT /artists/{artist}/albums/{album}` : Lie l'album à l'artiste
 > * `DELETE /artists/{artist}/albums/{album}` : Supprime la liaison entre l'album et l'artiste
 
+### Actions particulières
+
+Bien sûr, certaines actions ne se résument pas aux simple CRUD. Dans ce cas, il est nécessaire de faire une URI particulière en y ajoutant un verbe.
+
+![WHAT?!?](https://media.giphy.com/media/SqmkZ5IdwzTP2/giphy.gif)
+
+Oui, au début de mon article je vous ai dit "pas de verbes", mais ces actions sont l'exception qui confirme la règle. 
+
+Bien sûr, il faut avant tout essayer de faire rentrer cette action dans un des verbes HTTP. Cette nouvelle URL sera **forcément appelée en POST**.
+
+> Par exemple, si je veux lire une piste d'un album, je n'ai pas de verbe HTTP qui correspondrait... Je vais donc **exceptionnellement** créer cette action :
+>
+>  ```
+> POST /albums/{album-id}/tracks/{track-id}/play
+>  ```
+
 ## Les "status code"
+
+[![](C:\Users\qmachard\Perso\blog\src\img\posts\rest\error.png)](https://www.commitstrip.com/fr/2016/03/03/its-not-working/)
 
 ==TODO==
 
@@ -132,6 +230,7 @@ Afin de lier deux ressources entre elles sans définir pour autant de lien de pa
 Comme toujours, je vous mets quelques liens que je trouve intéressants à ce sujet :
 
 - [HATEOAS, le Graal des développeurs d'API](http://putaindecode.io/fr/articles/api/hateoas/) (en français)
+- [API REST CheatSheet](https://blog.octo.com/wp-content/uploads/2014/10/RESTful-API-design-OCTO-Quick-Reference-Card-2.2.pdf) (PDF, en anglais)
 
 N'hésitez pas à **partager cet article** et envoyer **vos questions ou vos ressources en commentaires** ! 
 
