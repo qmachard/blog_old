@@ -1,14 +1,14 @@
 ---
 layout: post
-title:  "Concevoir une API RESTful"
-excerpt: "-- todo --"
+title:  "Concevoir une API REST"
+excerpt: "Techniques de base pour designer une API en utilisant le standard REST"
 background: '/img/posts/covers/bem.jpg'
 comments: true
 tags: api rest back
 image: '/img/posts/covers/bem.jpg'
 ---
 
-# Designer une API RESTful
+# Concevoir une API REST
 
 Pour communiquer entre elles, les applications ont besoin d'un support **basé généralement sur HTTP**. C'est une qu'on appelle **une API** ou **un webservice**.
 
@@ -189,7 +189,7 @@ Voici un petit tableau permettant de comprendre le rôle de chaque verbe lorsqu'
 
 #### Idempotence
 
-L'idempotence est le fait que lorsque qu'une requête est appelée plusieurs fois, le résultat obtenu de varie pas.
+L'idempotence est le fait que lorsque qu'une requête est appelée plusieurs fois, le résultat obtenu ne varie pas.
 
 Les verbes `GET`, `PUT`, `PATCH`, `DELETE` sont idempotents. Seul `POST` ne l'est pas car il créé une entité à chaque appel.
 
@@ -197,7 +197,7 @@ Cf. [Idempotent REST APIs](https://restfulapi.net/idempotent-rest-apis/)
 
 ####*PATCH* ton *POST*
 
-Ces deux verbes HTTP permette d'ajouter un corps (*content*) à notre requête. Ce corps sera également un object JSON qui représente l'objet.
+Ces deux verbes HTTP permette d'ajouter un corps (*content*) à notre requête. Ce corps sera également un object JSON et représentera les attributs d'entrée de l'objet (ceux utiles à sa création).
 
 > Si nous voulons créer un nouvel album nous executerons cette requête :
 >
@@ -205,15 +205,15 @@ Ces deux verbes HTTP permette d'ajouter un corps (*content*) à notre requête. 
 > # POST /albums
 > + Request (application/json)
 > {
->    "title": "Lunar Lane",
->    "year": "2015"
+>     "title": "Lunar Lane",
+>     "year": "2015"
 > }
 > 
 > + Response 201 (application/json)
 > {
 >     "id": 274,
->    "title": "Lunar Lane",
->    "year": "2015"
+>     "title": "Lunar Lane",
+>     "year": "2015"
 > }
 > ```
 >
@@ -222,8 +222,8 @@ Ces deux verbes HTTP permette d'ajouter un corps (*content*) à notre requête. 
 > # PATCH /albums/274
 > + Request (application/json)
 > {
->    "title": "Lunar Lane (Deluxe)",
->    "year": "2015"
+>     "title": "Lunar Lane (Deluxe)",
+>     "year": "2015"
 > }
 > 
 > + Response 200 (application/json)
@@ -242,15 +242,15 @@ Afin de lier deux ressources entre elles sans définir pour autant de lien de pa
 >
 > * `GET /artists/{artist}/albums` : Liste les albums liés à un artiste
 > * `PUT /artists/{artist}/albums/{album}` : Lie l'album à l'artiste
-> * `DELETE /artists/{artist}/albums/{album}` : Supprime la liaison entre l'album et l'artiste
+> * `DELETE /artists/{artist}/albums/{album}` : Supprime uniquement la liaison entre l'album et l'artiste
 
 ### Actions particulières
 
-Bien sûr, **certaines actions ne se résument pas aux simple CRUD**. Dans ce cas, il est nécessaire de faire une **URI particulière en y ajoutant un verbe**.
+Bien sûr **certaines actions ne se résument pas aux simple CRUD**. Dans ce cas, il est nécessaire de faire une **URI particulière en y ajoutant un verbe**.
 
 ![WHAT?!?](https://media.giphy.com/media/SqmkZ5IdwzTP2/giphy.gif)
 
-Oui, au début de mon article je vous ai dit "pas de verbes", mais ces actions sont l'exception qui confirme la règle. 
+Oui, au début de mon article je vous ai dit "pas de verbes", mais ces actions sont **l'exception qui confirme la règle**. 
 
 Bien sûr, il faut avant tout essayer de faire rentrer cette action dans un des verbes HTTP. Cette nouvelle URL sera **forcément appelée en POST**.
 
@@ -264,39 +264,75 @@ Bien sûr, il faut avant tout essayer de faire rentrer cette action dans un des 
 
 ![](C:\Users\qmachard\Perso\blog\src\img\posts\rest\error.png)
 
-Comme le montre très bien cette vignette de [CommitStrip.com](https://www.commitstrip.com/fr/2016/03/03/its-not-working/), il n'y a rien de pire lorsque l'on requête une API que de ne pas comprendre quelle est l'erreur.
+Comme le montre très bien cette vignette de l'excellent [CommitStrip.com](http://www.commitstrip.com/fr/2013/07/01/quand-lapi-rend-fou/), il n'y a rien de pire lorsque l'on requête une API que de ne pas comprendre quelle est l'erreur.
 
-Et encore une fois, HTTP a fait les 3/4 du boulot en **ajoutant des status code à ses retours de requêtes**. Il serait donc dommage de s'en priver.
+Et encore une fois, HTTP a fait les 3/4 du boulot en **ajoutant des *status code* à ses retours de requêtes**. Il serait donc dommage de s'en priver.
 
 > Un des *status code* le plus connu est 404, que l'on croise régulièrement, mais qu'en est-til des [autres](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) ?
 
 L'idée n'est pas de vous lister un à un l'intégralité des *status codes*, mais de vous montrer les plus utilisés et les plus subtiles.
 
-Ceux-ci ce découpent en 4 catégories : **1xx**, **2xx**, **3xx**, **4xx** et **5xx**. *On ne va pas parler des erreurs de type 1xx, qui n'ont pas grand intérêt pour ma part.*
+Ceux-ci ce découpent en 4 catégories : **1xx**, **2xx**, **3xx**, **4xx** et **5xx**. *On ne va pas parler des erreurs de type 1xx, qui n'ont pas grand intérêt pour ma part.* Pour vous aider à bien les comprendre, j'ai rajouté [des chats](https://http.cat/).
 
 ### 2xx : *Tout va bien*
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
+![200 - OK](https://http.cat/200)
+
+Les status 2xx sont retournées par le serveur quand tout s'est bien passé.
+
+| Code | Erreur            | Cas d'usage                                                  |
+| ---- | ----------------- | ------------------------------------------------------------ |
+| 200  | *OK*              | Il est utilisé pour **tous les retours d'une API qui se passe bien** et qui ne rentre pas dans les cas suivant. |
+| 201  | *Created*         | Il est utilisé lors d'**un retour positif de création** (POST) ou de liaison (PUT) d'une ressource. |
+| 204  | *No Content*      | Il est utilisé à la suite d'**une réussite de suppression** (DELETE). *Le corps de la réponse doit être vide.* |
+| 206  | *Partial Content* | Il est utilisé lorsque la collection retournée n'est pas complète. *Si la collection contient 2 pages, la première appelée retournera un status 206 et la deuxième un status 200.* |
 
 ### 3xx : *Regarde ailleurs*
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
+![301 - Move Permanently](https://http.cat/301)
+
+Les status 3xx sont retournées lorsque la ressource est à retrouver ailleurs (dans une autre URL, dans le cache, etc.).
+
+| Code | Erreur              | Cas d'usage                                                  |
+| ---- | ------------------- | ------------------------------------------------------------ |
+| 301  | *Moved Permanently* | Il est utilisé lorsque **la ressource à été déplacée**. Il est accompagné d'un header `Location: {url de la ressource}` |
+| 304  | *Not Modified*      | Il est utilisé pour dire au client que **la ressource n'a pas été modifiée depuis son dernier appel**. *La ressource ne sera pas renvoyer, le client prendra donc par défaut l'entité en cache.* |
 
 ### 4xx : *Tu t'es planté*
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
+![404 - Not Found](https://http.cat/404)
+
+Les status 4xx sont renvoyé lorsque le client de l'API a fait une erreur ou ne peut pas accéder à la ressource. 
+
+Ces erreurs seront **toujours accompagné d'un object erreur** (vu précédemment).
+
+| Code | Erreur         | Cas d'usage                                                  |
+| ---- | -------------- | ------------------------------------------------------------ |
+| 400  | *Bad Request*  | Il est utilisé lorsque le contenu de **la requête ne correspond pas à ce qui est demandé**. *Lors de la création d'une entité, si un champs est mal renseigné par exemple.* |
+| 401  | *Unauthorized* | Il est utilisé lorsque **le client n'a pas accès à la ressource** car il doit spécifier un token ou une clé d'API. |
+| 403  | *Forbidden*    | Il est utilisé lorsque **le client n'a pas accès à la ressource**. La subtile différence avec la 401 réside dans le fait que même si le client renseigne un token ou une clé d'API valide, la ressource lui sera toujours refusée. |
+| 404  | *Not Found*    | Dois-je réellement vous l'expliquer ? Il est est utilisé lorsqu'**une ressource est introuvable**. |
+| 409  | *Conflict*     | Il est, par exemple, utilisé lorsque deux ressources sont déjà liées entre-elles suite à un PUT. |
 
 ### 5xx : *Je me suis planté*
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
+![500 - Internal Server Error](https://http.cat/500)
+
+Les status 5xx sont retournées lorsque le serveur a un problème.
+
+Ces erreurs seront **toujours accompagné d'un object erreur** (vu précédemment).
+
+| Code | Erreur                | Cas d'usage                                                  |
+| ---- | ------------------------ | -------------------------------------------- |
+| 500  | *Internal Server Error* | Lorsque le script ne se déroule pas correctement mais que le client n'y est pour rien. |
+
+## Exemple
+
+Comme je vous trouve sympas, je vous donne la documentation complète de l'API d'exemple : [Music API](https://musicapi7.docs.apiary.io/#). 
+
+Pour cette documentation, j'ai utilisé [API BluePrint](https://apiblueprint.org/), un langage basé sur Markdown mais axé Rest. (Je vous ferais un petit article à ce sujet 😉).
+
+![You're Welcome](https://media.giphy.com/media/3o85xwxr06YNoFdSbm/giphy.gif)
 
 ## Glory of REST
 
@@ -320,11 +356,12 @@ Ceux-ci ce découpent en 4 catégories : **1xx**, **2xx**, **3xx**, **4xx** et *
 
 Comme toujours, je vous mets quelques liens que je trouve intéressants à ce sujet :
 
+- [A RESTful Tutorial](https://www.restapitutorial.com/) (en anglais)
 - [HATEOAS, le Graal des développeurs d'API](http://putaindecode.io/fr/articles/api/hateoas/) (en français)
 - [API REST CheatSheet](https://blog.octo.com/wp-content/uploads/2014/10/RESTful-API-design-OCTO-Quick-Reference-Card-2.2.pdf) (PDF, en anglais)
 
 N'hésitez pas à **partager cet article** et envoyer **vos questions ou vos ressources en commentaires** ! 
 
-![GIF: Good Bye](https://media.giphy.com/media/3o6EhGvKschtbrRjX2/giphy.gif)
+![GIF: See You Soon!](https://media.giphy.com/media/l1J3CbFgn5o7DGRuE/giphy.gif)
 
 À bientôt ! Q.
