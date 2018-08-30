@@ -76,6 +76,10 @@ Comme on peut le voir dans l'exemple, l'avantage de retourner un objet et non di
 
 Une erreur n'est pas vraiment une ressource réelle, mais elle a tout de même un schéma qui est intéressant à travailler.
 
+![](C:\Users\qmachard\Perso\blog\src\img\posts\rest\error.png)
+
+Comme le montre cette vignette de [CommitStrip.com](http://www.commitstrip.com/fr/2013/07/01/quand-lapi-rend-fou/), il est toujours frustrant pour un développeur de ne pas comprendre l'erreur renvoyé par le webservice. Il est donc nécessaire de renvoyer une erreur correctement formatée.
+
 > Voyons un exemple d'erreur
 > ```json
 > {
@@ -262,9 +266,9 @@ Bien sûr, il faut avant tout essayer de faire rentrer cette action dans un des 
 
 ## Les "status code"
 
-![](C:\Users\qmachard\Perso\blog\src\img\posts\rest\error.png)
+![](https://www.commitstrip.com/wp-content/uploads/2018/08/Strip-Response-code-650-final.jpg)
 
-Comme le montre très bien cette vignette de l'excellent [CommitStrip.com](http://www.commitstrip.com/fr/2013/07/01/quand-lapi-rend-fou/), il n'y a rien de pire lorsque l'on requête une API que de ne pas comprendre quelle est l'erreur.
+Comme le montre très bien cette planche de l'excellent [CommitStrip.com](http://www.commitstrip.com/fr/2018/08/24/http-headers-ftw/), en plus de retourner un format d'erreur correct il est important d'utiliser les status codes correspondants.
 
 Et encore une fois, HTTP a fait les 3/4 du boulot en **ajoutant des *status code* à ses retours de requêtes**. Il serait donc dommage de s'en priver.
 
@@ -336,9 +340,48 @@ Pour cette documentation, j'ai utilisé [API BluePrint](https://apiblueprint.org
 
 ## Glory of REST
 
+Certains formats de ressources permettent d'aller plus loins et d'améliorer l'expérience développeur lors des appels API. Je ne vais pas m'attarder sur ces formats, mon but est simplement de vous faire une petite introduction et vous donner envie d'aller plus loin.
+
 ### HATEOAS
 
-==TODO==
+HATEOAS, *Hypermedia As The Engine Of Application State*, permet de formaliser les ressources de la même manière qu'on le ferait en HTML : en créant des liens entres elles. Celà permet de **naviguer dans l'API sans connaitre sa documentation** mais uniquement son point d'entrée.
+
+> Reprenons mon exemple. Voici ce que donnerai un résultat d'album en HATEOAS :
+>
+> ```json
+> {
+>     "id": "628",
+>     "title": "The Groove Sessions",
+>     "artists": [
+>         {
+>             "id": 4,
+>             "name": "Chinese Man",
+>             "links": [
+>                 {
+>                     "rel": "self",
+>                     "href": "/artists/4"
+>                 }
+>             ]
+>         }
+>   	],
+>     "year": "2007",
+>     "created_at": "1535021696",
+>     "links": [
+>         {
+>             "rel": "list",
+>             "href": "/albums",
+>         },
+>         {
+>             "rel": "self",
+>             "href": "/albums/628"
+>         },
+>         {
+>             "rel": "tracks",
+>             "href": "/albums/628/tracks"
+>         }
+>     ]
+> }
+> ```
 
 ### JSONLD
 
