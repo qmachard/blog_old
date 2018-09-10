@@ -268,21 +268,19 @@ Bien sûr, il faut avant tout essayer de faire rentrer cette action dans un des 
 
 ![](https://www.commitstrip.com/wp-content/uploads/2018/08/Strip-Response-code-650-final.jpg)
 
-Comme le montre très bien cette planche de l'excellent [CommitStrip.com](http://www.commitstrip.com/fr/2018/08/24/http-headers-ftw/), en plus de retourner un format d'erreur correct il est important d'utiliser les status codes correspondants.
-
-Et encore une fois, HTTP a fait les 3/4 du boulot en **ajoutant des *status code* à ses retours de requêtes**. Il serait donc dommage de s'en priver.
+Comme le montre très bien cette planche de l'excellent [CommitStrip.com](http://www.commitstrip.com/fr/2018/08/24/http-headers-ftw/), en plus de retourner un format d'erreur correct il est important d'**utiliser les status codes correspondants**.
 
 > Un des *status code* le plus connu est 404, que l'on croise régulièrement, mais qu'en est-til des [autres](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) ?
 
 L'idée n'est pas de vous lister un à un l'intégralité des *status codes*, mais de vous montrer les plus utilisés et les plus subtiles.
 
-Ceux-ci ce découpent en 4 catégories : **1xx**, **2xx**, **3xx**, **4xx** et **5xx**. *On ne va pas parler des erreurs de type 1xx, qui n'ont pas grand intérêt pour ma part.* Pour vous aider à bien les comprendre, j'ai rajouté [des chats](https://http.cat/).
+Ceux-ci ce découpent en 4 catégories : **1xx**, **2xx**, **3xx**, **4xx** et **5xx**. *On ne va pas parler des erreurs de type 1xx, qui n'ont pas grand intérêt pour ma part.* Pour illustrer mes propos, j'ai rajouté [des chats](https://http.cat/).
 
 ### 2xx : *Tout va bien*
 
 ![200 - OK](https://http.cat/200)
 
-Les status 2xx sont retournées par le serveur quand tout s'est bien passé.
+Les status 2xx sont retournées par le serveur quand **tout s'est bien passé**.
 
 | Code | Erreur            | Cas d'usage                                                  |
 | ---- | ----------------- | ------------------------------------------------------------ |
@@ -344,7 +342,7 @@ Certains formats de ressources permettent d'aller plus loins et d'améliorer l'e
 
 ### HATEOAS
 
-HATEOAS, *Hypermedia As The Engine Of Application State*, permet de formaliser les ressources de la même manière qu'on le ferait en HTML : en créant des liens entres elles. Celà permet de **naviguer dans l'API sans connaitre sa documentation** mais uniquement son point d'entrée.
+HATEOAS, *Hypermedia As The Engine Of Application State*, permet de formaliser les ressources de la même manière qu'on le ferait en HTML : en créant des liens entres elles. Cela permet de **naviguer dans l'API sans connaitre sa documentation** mais uniquement son point d'entrée.
 
 > Reprenons mon exemple. Voici ce que donnerai un résultat d'album en HATEOAS :
 >
@@ -383,25 +381,60 @@ HATEOAS, *Hypermedia As The Engine Of Application State*, permet de formaliser l
 > }
 > ```
 
-### JSONLD
-
-==TODO==
-
-* Définir les types de données
-
 ### JSON Schema
 
-==TODO==
+Le but ici est de documenter notre API en utilisant un schéma. C'est très utile pour tester que le retour d'une API est conforme à sa documentation, mais aussi pour créer les modèles dans notre langage de programmation préféré.
 
-* Définition des ressources
+> Dans mon exemple d'API, un album se présente comme ceci :
+>
+> ```json
+> {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "artists": {
+          "type": "array"
+        },
+        "year": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      }
+}
+> ```
+
+### JSONLD
+
+A la manière du JSON Schéma, le but est de décrire nos ressources mais cette fois-ci dans des **schémas standardisées**.
+
+> Prenons l'exemple de la documentation. Si la ressource est une personne, je ne vais pas réinventé les informations d'une personne, donc je peux directement utiliser un shéma standard de Personne : [https://json-ld.org/contexts/person.jsonld](https://json-ld.org/contexts/person.jsonld).
+>
+> ```json
+> {
+  "@context": "https://json-ld.org/contexts/person.jsonld",
+  "@id": "http://dbpedia.org/resource/John_Lennon",
+  "name": "John Lennon",
+  "born": "1940-10-09",
+  "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"
+}
+> ```
 
 ## Pour aller plus loin
 
 Comme toujours, je vous mets quelques liens que je trouve intéressants à ce sujet :
 
 - [A RESTful Tutorial](https://www.restapitutorial.com/) (en anglais)
+- [Quick Card Reference](https://blog.octo.com/wp-content/uploads/2014/12/OCTO-Refcard_API_Design_EN_3.0.pdf) (PDF, en anglais)
 - [HATEOAS, le Graal des développeurs d'API](http://putaindecode.io/fr/articles/api/hateoas/) (en français)
-- [API REST CheatSheet](https://blog.octo.com/wp-content/uploads/2014/10/RESTful-API-design-OCTO-Quick-Reference-Card-2.2.pdf) (PDF, en anglais)
+- [Exemple d'API](https://musicapi7.docs.apiary.io) (en anglais)
 
 N'hésitez pas à **partager cet article** et envoyer **vos questions ou vos ressources en commentaires** ! 
 
